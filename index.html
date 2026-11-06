@@ -1023,20 +1023,7 @@
       document.body.removeChild(ta);
     }
 
-    // function swapPortraitPhoto(e) {
-    //   const file = e.target.files[0];
-    //   if (!file) return;
-    //   const reader = new FileReader();
-    //   reader.onload = function(evt) {
-    //     const img = document.getElementById('rohit-custom-photo');
-    //     const svg = document.getElementById('default-noir-svg');
-    //     img.src = evt.target.result;
-    //     img.classList.remove('hidden');
-    //     svg.classList.add('opacity-10');
-    //     showToast('Custom Portrait Loaded with Crimson Filter');
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
+    
 
     /* 5-Layer Stack Inspector */
     const stackLayersData = [
@@ -1715,7 +1702,7 @@
       window.scrollTo({ top: 0, behavior: 'auto' });
 
       const pBox = document.getElementById('portrait-box');
-      const pSvg = document.getElementById('default-noir-svg');
+    
       const pGrid = document.getElementById('portrait-grid');
       if (pBox) pBox.classList.remove('portrait-crimson-active');
       if (pSvg) pSvg.classList.add('opacity-0');
@@ -1766,7 +1753,7 @@
 
           if (a.type === 'portrait') {
             const pBox = a.el;
-            const pSvg = document.getElementById('default-noir-svg');
+          
             const pGrid = document.getElementById('portrait-grid');
             const stretchP = Math.min(1, progress / 0.35);
             const easeStretch = 1 - Math.pow(1 - stretchP, 3);
@@ -1833,7 +1820,7 @@
             a.state = 'done';
 
             if (a.type === 'portrait') {
-              const pSvg = document.getElementById('default-noir-svg');
+            
               const pGrid = document.getElementById('portrait-grid');
               if (pSvg) pSvg.classList.remove('opacity-0');
               if (pGrid) pGrid.classList.remove('opacity-0');
