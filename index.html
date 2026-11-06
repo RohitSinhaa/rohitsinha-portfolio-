@@ -1705,7 +1705,7 @@
     
       const pGrid = document.getElementById('portrait-grid');
       if (pBox) pBox.classList.remove('portrait-crimson-active');
-      if (pSvg) pSvg.classList.add('opacity-0');
+  
       if (pGrid) pGrid.classList.add('opacity-0');
 
       shells.forEach(s => s.el.classList.add('shell-unbuilt'));
@@ -1768,17 +1768,17 @@
 
             if (progress < 0.35) {
               pBox.classList.add('atom-stretching');
-              if (pSvg) pSvg.classList.add('opacity-0');
+              
               pBox.classList.remove('portrait-crimson-active');
             } else if (progress < 0.72) {
               pBox.classList.remove('atom-stretching');
               pBox.classList.add('atom-typing');
-              if (pSvg) pSvg.classList.remove('opacity-0');
+          
               pBox.classList.remove('portrait-crimson-active');
             } else {
               pBox.classList.remove('atom-stretching');
               pBox.classList.add('atom-typing');
-              if (pSvg) pSvg.classList.remove('opacity-0');
+            
               if (pGrid) pGrid.classList.remove('opacity-0');
               pBox.classList.add('portrait-crimson-active');
             }
@@ -1822,7 +1822,7 @@
             if (a.type === 'portrait') {
             
               const pGrid = document.getElementById('portrait-grid');
-              if (pSvg) pSvg.classList.remove('opacity-0');
+
               if (pGrid) pGrid.classList.remove('opacity-0');
               a.el.classList.add('portrait-crimson-active');
             }
