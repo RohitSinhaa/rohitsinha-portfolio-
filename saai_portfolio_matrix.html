@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROHIT SINHA // SAAI — Autonomous Systems & Data Science Architect</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            condensed: ['"Bebas Neue"', 'sans-serif'],
+            display: ['"Space Grotesk"', '"Inter"', 'sans-serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            script: ['"Caveat"', 'cursive'],
+          },
+          colors: {
+            pitch: '#000000',
+            panel: '#08080C',
+            panelHover: '#0D0D14',
+            line: '#181822',
+            crimson: '#D91414',
+            crimsonBright: '#FF252E',
+            figma: '#0D99FF',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --crimson: #D91414;
+      --crimson-bright: #FF252E;
+      --figma-blue: #0D99FF;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      background-color: #000000;
+      color: #F4F4F6;
+      overflow-x: hidden;
+    }
+
+    /* Giant Hollow Outlined PORTFOLIO Typography (Exact saai.pro / Video Hero) */
+    .portfolio-outline-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.6rem, 19.2vw, 17.5rem);
+      line-height: 0.82;
+      letter-spacing: 0.03em;
+      color: rgba(217, 20, 20, 0.04);
+      -webkit-text-stroke: 2px #D91414;
+      text-shadow: 0 0 55px rgba(217, 20, 20, 0.24);
+      user-select: none;
+    }
+
+    /* Glass & Cyber Cards */
+    .cyber-card {
+      background: #07070B;
+      border: 1px solid #181822;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .cyber-card:hover {
+      border-color: rgba(255, 37, 46, 0.45);
+      box-shadow: 0 0 30px rgba(217, 20, 20, 0.14);
+    }
+
+    /* Multi-Agent Wireframe Construction States */
+    .atom-unbuilt {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    .atom-stretching > *:not(.figma-wireframe-ui) {
+      opacity: 0 !important;
+    }
+    .atom-typing {
+      opacity: 1 !important;
+    }
+    .atom-done {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .shell-unbuilt {
+      border-color: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* Live Figma Blue (#0D99FF) Drag-Box Wireframe */
+    .figma-wireframe-ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1.5px solid #0D99FF;
+      background: rgba(13, 153, 255, 0.08);
+      pointer-events: none;
+      z-index: 60;
+      box-shadow: 0 0 18px rgba(13, 153, 255, 0.22);
+    }
+    .figma-corner-sq {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #FFFFFF;
+      border: 1px solid #0D99FF;
+    }
+    .figma-corner-sq.tl { top: -3.5px; left: -3.5px; }
+    .figma-corner-sq.tr { top: -3.5px; right: -3.5px; }
+    .figma-corner-sq.bl { bottom: -3.5px; left: -3.5px; }
+    .figma-corner-sq.br { bottom: -3.5px; right: -3.5px; }
+
+    .figma-size-badge {
+      position: absolute;
+      bottom: -21px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0D99FF;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 2px;
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Crimson Portrait Transition */
+    .portrait-crimson-active {
+      background: linear-gradient(180deg, #D91414 0%, #9E0B0B 60%, #240404 100%) !important;
+      border-color: #FF252E !important;
+      box-shadow: 0 0 55px rgba(217, 20, 20, 0.35) !important;
+    }
+
+    /* Typewriter Caret */
+    .type-caret::after {
+      content: '▋';
+      color: #0D99FF;
+      margin-left: 2px;
+      animation: blinkCaret 0.45s step-end infinite;
+    }
+    @keyframes blinkCaret {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Equalizer Bars */
+    .eq-bar {
+      width: 2.5px;
+      background: #FF252E;
+      border-radius: 1px;
+      transition: height 0.08s ease;
+    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #000000; }
+    ::-webkit-scrollbar-thumb { background: #1F1F2B; }
+    ::-webkit-scrollbar-thumb:hover { background: #D91414; }
+  </style>
+</head>
+<body class="font-sans antialiased bg-pitch text-zinc-100 relative selection:bg-crimson selection:text-white">
+
+  <!-- =====================================================================
+       00:00 INITIAL SEED SQUARE IN CENTER OF BLACK SCREEN
+  ====================================================================== -->
+  <div id="seed-square-wrap" class="fixed inset-0 pointer-events-none z-[9990] flex flex-col items-center justify-center transition-opacity duration-300">
+    <div id="seed-square" class="w-9 h-9 rounded-md bg-[#16161D] border border-white/15 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.08)]">
+      <div class="w-3.5 h-0.5 bg-zinc-400 rounded-full"></div>
+    </div>
+    <button id="sound-unlock-prompt" onclick="unlockAudioAndLaunch()" class="mt-14 pointer-events-auto px-3.5 py-1.5 rounded-full bg-[#111116]/90 border border-crimson/50 font-mono text-[10px] text-zinc-200 hover:text-white hover:border-crimsonBright flex items-center gap-2 shadow-[0_0_25px_rgba(217,20,20,0.35)] transition-all animate-pulse">
+      <span class="w-2 h-2 rounded-full bg-crimsonBright"></span>
+      <span>🔊[ CLICK ANYWHERE TO EXPLORE ]</span>
+    </button>
+  </div>
+
+  <!-- Hidden Custom Audio Element for Custom MP3 / Video Soundtrack -->
+  <audio id="custom-soundtrack" preload="auto" class="hidden"></audio>
+  <input id="custom-song-input" type="file" accept="audio/*,video/mp4,video/*" class="hidden" onchange="loadCustomSongFile(event)" />
+
+  <!-- =====================================================================
+       20 AUTONOMOUS AGENT CURSORS CANVAS OVERLAY (60FPS)
+  ====================================================================== -->
+  <canvas id="agentCursorCanvas" class="fixed inset-0 pointer-events-none z-[9999]"></canvas>
+
+  <!-- Toast Notification -->
+  <div id="toast-box" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-[10001] pointer-events-none flex flex-col items-center gap-2"></div>
+
+  <!-- =====================================================================
+       FLOATING BOTTOM MULTI-AGENT & SOUND CONTROL DOCK
+  ====================================================================== -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[10000] flex items-center gap-2 sm:gap-3 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#111114]/95 border border-white/15 backdrop-blur-md shadow-[0_12px_45px_rgba(0,0,0,0.95)] font-mono text-[11px] text-zinc-300 select-none max-w-[96vw] overflow-x-auto">
+    <div class="flex items-center -space-x-1.5 shrink-0">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#FF3B30] ring-1 ring-black"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] ring-1 ring-black"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#10B981] ring-1 ring-black"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#0D99FF] ring-1 ring-black"></span>
+    </div>
+
+    <span id="dock-status-text" class="text-zinc-200 font-medium whitespace-nowrap shrink-0">Building page...</span>
+
+    <span class="text-zinc-700 shrink-0">|</span>
+
+    <!-- Speed Multipliers (Default 1x Smooth Active) -->
+    <div class="flex items-center gap-1 shrink-0">
+      <button onclick="setSpeed(1)" id="spd-1" class="px-2 py-0.5 rounded bg-white/15 text-white font-semibold transition-all">1x</button>
+      <button onclick="setSpeed(2)" id="spd-2" class="px-2 py-0.5 rounded text-zinc-400 hover:text-white transition-all">2x</button>
+      <button onclick="setSpeed(5)" id="spd-5" class="px-2 py-0.5 rounded text-zinc-400 hover:text-white transition-all">5x</button>
+    </div>
+
+    <span class="text-zinc-700 shrink-0">|</span>
+
+    <!-- Live 5-Bar Equalizer + Sound Toggle -->
+    <button onclick="togglePortfolioAudio()" id="sound-toggle-btn" class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-crimson/20 border border-crimson/50 text-white hover:bg-crimson/35 transition-all shrink-0">
+      <div id="eq-bars" class="flex items-end gap-[2px] h-3">
+        <span class="eq-bar h-1.5" id="eq-b0"></span>
+        <span class="eq-bar h-3" id="eq-b1"></span>
+        <span class="eq-bar h-2" id="eq-b2"></span>
+        <span class="eq-bar h-3" id="eq-b3"></span>
+        <span class="eq-bar h-1" id="eq-b4"></span>
+      </div>
+      <span id="sound-toggle-label" class="text-[10px] font-semibold">ON</span>
+    </button>
+
+    <!-- Custom Song Loader -->
+    <label for="custom-song-input" class="cursor-pointer px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-[10px] text-zinc-300 hover:text-white transition-all shrink-0" title="Upload MP3 or MP4 video audio">
+      ♪ Song
+    </label>
+
+    <span class="text-zinc-700 shrink-0">|</span>
+
+    <button id="dock-action-btn" onclick="handleDockAction()" class="flex items-center gap-1 text-[#0D99FF] hover:text-white font-semibold transition-colors shrink-0">
+      <span id="dock-action-label">Skip</span>
+    </button>
+  </div>
+
+  <!-- =====================================================================
+       TOP NAVIGATION BAR (saai.pro + video match)
+  ====================================================================== -->
+  <header class="sticky top-0 z-40 bg-pitch/85 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-center">
+      <nav class="flex items-center gap-5 sm:gap-8 font-mono text-[11px]">
+        <a href="#hero" data-atom="box" data-start="0.88" data-dur="0.45" class="w-7 h-7 bg-crimson text-white font-bold flex items-center justify-center tracking-tighter shadow-[0_0_16px_rgba(217,20,20,0.7)] atom-unbuilt">
+          RS
+        </a>
+        <a href="#hero" data-atom="text" data-start="0.95" data-dur="0.42" class="text-zinc-200 hover:text-white transition-colors atom-unbuilt">Home</a>
+        <a href="#about" data-atom="text" data-start="1.05" data-dur="0.42" class="text-zinc-400 hover:text-white transition-colors atom-unbuilt">About</a>
+        <a href="#flagships" data-atom="text" data-start="1.15" data-dur="0.42" class="text-zinc-400 hover:text-white transition-colors atom-unbuilt">Flagships</a>
+        <a href="#ece-signals" data-atom="text" data-start="1.25" data-dur="0.42" class="text-zinc-400 hover:text-white transition-colors atom-unbuilt">V2V Lab</a>
+        <a href="#matrix" data-atom="text" data-start="1.35" data-dur="0.42" class="text-zinc-400 hover:text-white transition-colors atom-unbuilt">Matrix</a>
+        <a href="#contact" data-atom="text" data-start="1.45" data-dur="0.42" class="text-zinc-400 hover:text-white transition-colors atom-unbuilt">Contact</a>
+        <a href="https://github.com/RohitSinhaa" target="_blank" rel="noopener noreferrer" data-atom="text" data-start="1.55" data-dur="0.45" class="text-crimsonBright hover:underline font-semibold flex items-center gap-1 atom-unbuilt">
+          <span>• GitHub ↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       MAIN CONTENT CONTAINER
+  ====================================================================== -->
+  <main class="max-w-[1380px] mx-auto px-4 sm:px-8 pb-36 space-y-28">
+
+    <!-- ===================================================================
+         SECTION 1: GIANT "PORTFOLIO" HERO (saai.pro / Video Layout)
+    ==================================================================== -->
+    <section id="hero" class="pt-2 sm:pt-4 relative">
+
+      <!-- Giant Outlined PORTFOLIO Backdrop -->
+      <div class="w-full text-center overflow-hidden">
+        <div data-atom="box" data-start="0.90" data-dur="0.75" class="portfolio-outline-title select-none inline-block px-2 atom-unbuilt">
+          PORTFOLIO
+        </div>
+      </div>
+
+      <!-- 3-Column Architectural Hero Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-7 items-end -mt-6 sm:-mt-14 lg:-mt-20 relative z-10">
+
+        <!-- LEFT COLUMN (Cols 1-5) -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="space-y-1">
+            <div data-atom="text" data-start="1.10" data-dur="0.50" class="font-script text-3xl sm:text-4xl text-zinc-200 -mb-2 ml-1 inline-block atom-unbuilt">
+              Hello, I'm
+            </div>
+            <div>
+              <div data-atom="rohit-badge" data-start="1.25" data-dur="0.75" class="inline-block bg-crimson px-5 py-1.5 shadow-[0_0_40px_rgba(217,20,20,0.45)] atom-unbuilt">
+                <h1 id="rohit-badge-text" class="font-condensed text-5xl sm:text-7xl tracking-wide text-white leading-none">
+                  ROHIT.
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div data-atom="text" data-start="1.55" data-dur="0.55" class="flex items-center gap-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-crimsonBright font-semibold inline-flex atom-unbuilt">
+              <span>• DATA SCIENCE, AI/ML &amp; EMBEDDED ECE ARCHITECT</span>
+            </div>
+          </div>
+
+          <p data-atom="text" data-start="1.75" data-dur="0.85" class="text-xs sm:text-[13.5px] text-zinc-300 leading-relaxed max-w-md font-normal atom-unbuilt">
+            Architecting automated Python &amp; SQL analytics ecosystems, cloud-deployed predictive ML models, executive Power BI suites, and real-time ESP32 V2V wireless telemetry from first principles.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <a href="#contact" data-atom="box" data-start="2.10" data-dur="0.55" class="px-5 py-2.5 bg-panel hover:bg-crimson text-white font-mono text-[10px] uppercase tracking-[0.18em] border border-zinc-700 hover:border-crimsonBright transition-all atom-unbuilt">
+              INITIATE BRIEFING ↗
+            </a>
+            <a href="#flagships" data-atom="box" data-start="2.25" data-dur="0.55" class="px-5 py-2.5 bg-transparent hover:bg-white/5 text-zinc-300 font-mono text-[10px] uppercase tracking-[0.18em] border border-zinc-800 transition-all atom-unbuilt">
+              EXPLORE ARCHITECTURE
+            </a>
+          </div>
+
+          <!-- Bottom Metrics Row -->
+          <div class="pt-4 border-t border-line grid grid-cols-3 gap-4 max-w-md">
+            <div data-atom="box" data-start="2.45" data-dur="0.55" class="atom-unbuilt">
+              <div class="font-display font-bold text-base sm:text-xl text-white">
+                <span class="text-crimsonBright">70%</span><span class="text-xs font-mono text-zinc-400 ml-1">Faster</span>
+              </div>
+              <div class="font-mono text-[9px] uppercase tracking-wider text-zinc-500 mt-0.5">Pandas ETL</div>
+            </div>
+            <div data-atom="box" data-start="2.60" data-dur="0.55" class="atom-unbuilt">
+              <div class="font-display font-bold text-base sm:text-xl text-white">
+                10,000+<span class="text-xs font-mono text-zinc-400 ml-1">Rows</span>
+              </div>
+              <div class="font-mono text-[9px] uppercase tracking-wider text-zinc-500 mt-0.5">Power BI &amp; SQL</div>
+            </div>
+            <div data-atom="box" data-start="2.75" data-dur="0.55" class="atom-unbuilt">
+              <div class="font-display font-bold text-base sm:text-xl text-white">
+                7.92<span class="text-xs font-mono text-zinc-400 ml-1">CGPA</span>
+              </div>
+              <div class="font-mono text-[9px] uppercase tracking-wider text-zinc-500 mt-0.5">B.E. ECE · RNSIT</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER COLUMN (Cols 6-8): Crimson Duotone Portrait Module -->
+        <div class="lg:col-span-3 flex flex-col items-center">
+          <div id="portrait-box" data-atom="portrait" data-start="0.95" data-dur="1.55" class="w-full max-w-[295px] aspect-[3/3.85] relative overflow-hidden bg-[#14141B] border border-zinc-700 flex flex-col justify-end transition-colors duration-500 group atom-unbuilt">
+            <div id="portrait-grid" class="absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none" style="background-image: radial-gradient(rgba(0,0,0,0.35) 1px, transparent 1px); background-size: 10px 10px;"></div>
+
+            <svg id="default-noir-svg" viewBox="0 0 300 380" class="w-full h-[92%] object-cover object-bottom select-none pointer-events-none opacity-0 transition-opacity duration-500">
+              <defs>
+                <linearGradient id="suitNoir" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#141418"/>
+                  <stop offset="100%" stop-color="#040406"/>
+                </linearGradient>
+              </defs>
+              <g opacity="0.22" stroke="#000000" stroke-width="1">
+                <line x1="0" y1="70" x2="300" y2="70" />
+                <line x1="0" y1="140" x2="300" y2="140" />
+                <line x1="0" y1="210" x2="300" y2="210" />
+              </g>
+              <path d="M150 62 C118 62 98 86 98 122 C98 156 116 184 150 184 C184 184 202 156 202 122 C202 86 182 62 150 62 Z" fill="#0B0B0E"/>
+              <path d="M98 112 C98 76 120 55 150 55 C182 55 204 78 202 112 C192 94 172 86 150 86 C126 86 108 95 98 112 Z" fill="#050507"/>
+              <rect x="133" y="176" width="34" height="34" rx="6" fill="#0F0F14"/>
+              <path d="M32 380 L58 242 C66 216 95 202 132 202 L168 202 C205 202 234 216 242 242 L268 380 Z" fill="url(#suitNoir)"/>
+              <path d="M126 202 L150 268 L174 202 Z" fill="#E4E4EA" opacity="0.88"/>
+              <path d="M146 214 L154 214 L158 292 L150 306 L142 292 Z" fill="#9E0B0B"/>
+            </svg>
+
+            <img id="rohit-custom-photo" src="" alt="Rohit Sinha" class="hidden absolute inset-0 w-full h-full object-cover object-top mix-blend-luminosity contrast-125 brightness-90" />
+
+            <label for="photo-upload-input" class="absolute top-2.5 right-2.5 z-20 cursor-pointer px-2 py-1 bg-black/75 hover:bg-black text-[9px] font-mono uppercase tracking-wider text-zinc-300 border border-white/15 opacity-0 group-hover:opacity-100 transition-opacity">
+              + Custom Photo
+            </label>
+            <input id="photo-upload-input" type="file" accept="image/*" class="hidden" onchange="swapPortraitPhoto(event)" />
+
+            <div class="relative z-10 m-2.5 px-3 py-1.5 bg-black/90 border border-white/10 flex items-center justify-between font-mono text-[9px] tracking-[0.14em] text-zinc-300">
+              <span class="truncate"> BENGALURU · KARNATAKA · ACTIVE</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-crimsonBright animate-ping shrink-0"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN (Cols 9-12): 01, 02, 03 Architectural Pillars -->
+        <div class="lg:col-span-4 space-y-3">
+          <div data-shell data-shell-start="1.15" class="cyber-card p-4 relative shell-unbuilt">
+            <div class="flex items-center justify-between font-mono text-[9.5px] text-zinc-500 mb-1">
+              <span data-atom="text" data-start="1.20" data-dur="0.45" class="text-crimsonBright font-bold atom-unbuilt">01</span>
+              <span data-atom="text" data-start="1.30" data-dur="0.45" class="uppercase tracking-widest atom-unbuilt">DATA SCIENCE &amp; AI</span>
+            </div>
+            <h3 data-atom="text" data-start="1.45" data-dur="0.55" class="font-display font-bold text-sm text-white inline-block atom-unbuilt">Autonomous Analytics Core</h3>
+            <p data-atom="text" data-start="1.65" data-dur="0.65" class="text-[11px] text-zinc-400 mt-1 leading-relaxed atom-unbuilt">
+              Python (Pandas, NumPy) automated ETL &amp; cloud-deployed predictive ML models on AWS and Azure.
+            </p>
+          </div>
+
+          <div data-shell data-shell-start="1.40" class="cyber-card p-4 relative shell-unbuilt">
+            <div class="flex items-center justify-between font-mono text-[9.5px] text-zinc-500 mb-1">
+              <span data-atom="text" data-start="1.50" data-dur="0.45" class="text-crimsonBright font-bold atom-unbuilt">02</span>
+              <span data-atom="text" data-start="1.60" data-dur="0.45" class="uppercase tracking-widest atom-unbuilt">SQL &amp; POWER BI</span>
+            </div>
+            <h3 data-atom="text" data-start="1.75" data-dur="0.55" class="font-display font-bold text-sm text-white inline-block atom-unbuilt">Relational &amp; KPI Warehousing</h3>
+            <p data-atom="text" data-start="1.95" data-dur="0.65" class="text-[11px] text-zinc-400 mt-1 leading-relaxed atom-unbuilt">
+              Complex MySQL joins, subqueries, and executive Power BI dashboards across 1,000+ structured records.
+            </p>
+          </div>
+
+          <div data-shell data-shell-start="1.70" class="cyber-card p-4 relative shell-unbuilt">
+            <div class="flex items-center justify-between font-mono text-[9.5px] text-zinc-500 mb-1">
+              <span data-atom="text" data-start="1.80" data-dur="0.45" class="text-crimsonBright font-bold atom-unbuilt">03</span>
+              <span data-atom="text" data-start="1.90" data-dur="0.45" class="uppercase tracking-widest atom-unbuilt">ECE HARDWARE EDGE</span>
+            </div>
+            <h3 data-atom="text" data-start="2.05" data-dur="0.55" class="font-display font-bold text-sm text-white inline-block atom-unbuilt">Sub-Millisecond V2V Telemetry</h3>
+            <p data-atom="text" data-start="2.25" data-dur="0.65" class="text-[11px] text-zinc-400 mt-1 leading-relaxed atom-unbuilt">
+              ESP32 &amp; ESP-NOW wireless vehicle-to-vehicle collision avoidance fusing GPS and ultrasonic sensors.
+            </p>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between font-mono text-[9.5px] uppercase tracking-widest text-zinc-500 px-1">
+            <span data-atom="text" data-start="2.50" data-dur="0.35" class="hover:text-crimsonBright cursor-pointer atom-unbuilt">PYTHON</span>
+            <span data-atom="text" data-start="2.60" data-dur="0.35" class="hover:text-crimsonBright cursor-pointer atom-unbuilt">MYSQL</span>
+            <span data-atom="text" data-start="2.70" data-dur="0.35" class="hover:text-crimsonBright cursor-pointer atom-unbuilt">POWER_BI</span>
+            <span data-atom="text" data-start="2.80" data-dur="0.35" class="hover:text-crimsonBright cursor-pointer atom-unbuilt">AWS_ML</span>
+            <span data-atom="text" data-start="2.90" data-dur="0.35" class="hover:text-crimsonBright cursor-pointer atom-unbuilt">ESP32</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 2: BACKGROUND & PHILOSOPHY
+    ==================================================================== -->
+    <section id="about" class="space-y-8 pt-6">
+      <div class="border-t border-line pt-3 flex items-center justify-between font-mono text-[10px] text-zinc-500">
+        <span data-atom="text" data-start="3.40" data-dur="0.45" class="atom-unbuilt">// 01.00 SEC_ABOUT INDEX [01/05]</span>
+        <span data-atom="text" data-start="3.55" data-dur="0.45" class="text-crimsonBright atom-unbuilt">RNSIT · QSPIDERS · SKILLCRAFT · SUPRMENTR</span>
+      </div>
+
+      <div class="space-y-1.5">
+        <div data-atom="text" data-start="3.75" data-dur="0.42" class="font-mono text-[10px] uppercase tracking-[0.2em] text-crimsonBright font-semibold inline-block atom-unbuilt">ENGINEER PROFILE</div>
+        <div class="block">
+          <h2 data-atom="text" data-start="4.00" data-dur="0.55" class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight inline-block atom-unbuilt">Background &amp; Philosophy</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 space-y-5 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+          <p data-atom="text" data-start="4.40" data-dur="0.90" class="atom-unbuilt">
+            I am <strong class="text-white font-semibold">Rohit Sinha</strong> — a Data Science, AI &amp; Electronics Systems Engineer operating in Bengaluru, Karnataka. My formal engineering foundation was forged with a <span class="text-white font-medium underline decoration-crimson decoration-2 underline-offset-4">Bachelor of Engineering in Electronics and Communication (CGPA: 7.92 / 10.00)</span> at <strong class="text-white">RNS Institute of Technology</strong>, paired with an intensive <span class="text-white font-medium underline decoration-crimson decoration-2 underline-offset-4">Professional Program in Data Science and AI</span> at <strong class="text-white">QSpiders</strong>.
+          </p>
+
+          <p data-atom="text" data-start="5.10" data-dur="0.90" class="atom-unbuilt">
+            My defining capabilities bridge physical hardware and enterprise data intelligence: automating Python (Pandas) data-cleaning workflows that cut manual reporting time by 30% at <strong class="text-white">SkillCraft Technology</strong>, and deploying predictive machine learning models on AWS &amp; Azure cloud infrastructure at <strong class="text-white">SuprMentr Technologies Pvt Ltd</strong>.
+          </p>
+
+          <div data-atom="box" data-start="5.80" data-dur="0.80" class="border-l-2 border-crimson bg-panel/90 pl-5 py-4 pr-4 italic text-zinc-200 text-xs sm:text-sm atom-unbuilt">
+            "I design and deploy end-to-end analytical systems that capture noisy real-world telemetry, structure relational cohorts in SQL, and surface executive intelligence — built from first principles."
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div data-atom="box" data-start="4.60" data-dur="0.60" class="border-b border-line pb-4 flex items-start gap-4 atom-unbuilt">
+            <span class="font-mono text-xs text-crimsonBright font-bold mt-0.5">01</span>
+            <div>
+              <h3 class="font-display font-bold text-sm text-white">Sovereign Silicon-to-Cloud Stack</h3>
+              <p class="text-xs text-zinc-400 mt-1">Understanding how data is born at the microcontroller &amp; sensor register level (ESP32, GPS, Ultrasonic) makes my downstream Python &amp; SQL models cleaner and more resilient.</p>
+            </div>
+          </div>
+
+          <div data-atom="box" data-start="5.20" data-dur="0.60" class="border-b border-line pb-4 flex items-start gap-4 atom-unbuilt">
+            <span class="font-mono text-xs text-crimsonBright font-bold mt-0.5">02</span>
+            <div>
+              <h3 class="font-display font-bold text-sm text-white">First-Principles ETL Automation</h3>
+              <p class="text-xs text-zinc-400 mt-1">Eliminating repetitive manual spreadsheet work with vectorized Pandas pipelines, MySQL relational windowing, and automated KPI validation.</p>
+            </div>
+          </div>
+
+          <div data-atom="box" data-start="5.75" data-dur="0.60" class="pb-2 flex items-start gap-4 atom-unbuilt">
+            <span class="font-mono text-xs text-crimsonBright font-bold mt-0.5">03</span>
+            <div>
+              <h3 class="font-display font-bold text-sm text-white">Actionable Decision Intelligence</h3>
+              <p class="text-xs text-zinc-400 mt-1">Every Power BI dashboard and cloud ML model is engineered around measurable retention, productivity, and resource-utilization outcomes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: FLAGSHIP DEPLOYMENTS & 5-LAYER STACK
+    ==================================================================== -->
+    <section id="flagships" class="space-y-8 pt-6">
+      <div class="space-y-1.5">
+        <div data-atom="text" data-start="6.60" data-dur="0.40" class="font-mono text-[10px] uppercase tracking-[0.2em] text-crimsonBright font-semibold inline-block atom-unbuilt">ARCHITECTURAL DOSSIER</div>
+        <div class="block">
+          <h2 data-atom="text" data-start="6.85" data-dur="0.55" class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight inline-block atom-unbuilt">Flagship Deployments</h2>
+        </div>
+        <div class="block">
+          <p data-atom="text" data-start="7.15" data-dur="0.55" class="text-xs sm:text-sm text-zinc-400 pt-1 inline-block atom-unbuilt">Production-grade analytics, cloud ML, and embedded V2V telemetry systems.</p>
+        </div>
+      </div>
+
+      <!-- Large Featured Ecosystem Box -->
+      <div data-shell data-shell-start="7.45" class="cyber-card p-6 sm:p-10 space-y-8 relative shell-unbuilt">
+        <div class="space-y-3">
+          <div data-atom="box" data-start="7.60" data-dur="0.45" class="inline-flex items-center gap-2 px-2.5 py-1 bg-crimson/15 border border-crimson/40 font-mono text-[10px] text-crimsonBright uppercase tracking-widest atom-unbuilt">
+            <span>• CORE ECOSYSTEM</span>
+          </div>
+          <div class="block">
+            <h3 data-atom="text" data-start="7.85" data-dur="0.65" class="font-display font-bold text-2xl sm:text-4xl text-white tracking-tight inline-block atom-unbuilt">
+              RS-5 — 5-Layer Signal-to-Insight Autonomous Ecosystem
+            </h3>
+          </div>
+          <p data-atom="text" data-start="8.25" data-dur="0.75" class="text-xs sm:text-sm text-zinc-400 max-w-3xl leading-relaxed atom-unbuilt">
+            A unified engineering architecture spanning embedded ESP32 sensor acquisition, automated Python/Pandas data cleaning, MySQL cohort segmentation, cloud-deployed predictive AI (AWS/Azure), and interactive Power BI KPI suites.
+          </p>
+        </div>
+
+        <!-- 4 Red Big Metrics Row -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 pb-4 border-y border-line text-center">
+          <div data-atom="box" data-start="8.75" data-dur="0.50" class="py-2 atom-unbuilt">
+            <div class="font-display font-bold text-2xl sm:text-3xl text-crimsonBright">1,000+</div>
+            <div class="font-mono text-[9.5px] uppercase tracking-widest text-zinc-500 mt-1">STRUCTURED RECORDS</div>
+          </div>
+          <div data-atom="box" data-start="8.95" data-dur="0.50" class="py-2 atom-unbuilt">
+            <div class="font-display font-bold text-2xl sm:text-3xl text-crimsonBright">30%</div>
+            <div class="font-mono text-[9.5px] uppercase tracking-widest text-zinc-500 mt-1">FASTER PYTHON ETL</div>
+          </div>
+          <div data-atom="box" data-start="9.15" data-dur="0.50" class="py-2 atom-unbuilt">
+            <div class="font-display font-bold text-2xl sm:text-3xl text-crimsonBright">&lt;15ms</div>
+            <div class="font-mono text-[9.5px] uppercase tracking-widest text-zinc-500 mt-1">ESP-NOW V2V LATENCY</div>
+          </div>
+          <div data-atom="box" data-start="9.35" data-dur="0.50" class="py-2 atom-unbuilt">
+            <div class="font-display font-bold text-2xl sm:text-3xl text-crimsonBright">AWS / Azure</div>
+            <div class="font-mono text-[9.5px] uppercase tracking-widest text-zinc-500 mt-1">CLOUD ML DEPLOYMENT</div>
+          </div>
+        </div>
+
+        <!-- Interactive 5-Layer Constitutional Stack Selector -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div data-atom="text" data-start="9.65" data-dur="0.45" class="font-mono text-[10px] uppercase tracking-[0.16em] text-crimsonBright font-semibold atom-unbuilt">
+              • 5-LAYER ARCHITECTURAL STACK (CLICK LAYER TO INSPECT)
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+            <button onclick="selectStackLayer(0)" id="stack-btn-0" data-atom="box" data-start="9.90" data-dur="0.45" class="px-3.5 py-2 font-mono text-[11px] font-semibold bg-crimson text-white border border-crimsonBright transition-all text-left truncate atom-unbuilt">
+              L1 · ESP32 V2V Edge
+            </button>
+            <button onclick="selectStackLayer(1)" id="stack-btn-1" data-atom="box" data-start="10.05" data-dur="0.45" class="px-3.5 py-2 font-mono text-[11px] font-medium bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all text-left truncate atom-unbuilt">
+              L2 · Pandas ETL Core
+            </button>
+            <button onclick="selectStackLayer(2)" id="stack-btn-2" data-atom="box" data-start="10.20" data-dur="0.45" class="px-3.5 py-2 font-mono text-[11px] font-medium bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all text-left truncate atom-unbuilt">
+              L3 · MySQL Engine
+            </button>
+            <button onclick="selectStackLayer(3)" id="stack-btn-3" data-atom="box" data-start="10.35" data-dur="0.45" class="px-3.5 py-2 font-mono text-[11px] font-medium bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all text-left truncate atom-unbuilt">
+              L4 · Cloud AI Models
+            </button>
+            <button onclick="selectStackLayer(4)" id="stack-btn-4" data-atom="box" data-start="10.50" data-dur="0.45" class="px-3.5 py-2 font-mono text-[11px] font-medium bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all text-left truncate atom-unbuilt">
+              L5 · Power BI Suite
+            </button>
+          </div>
+
+          <div id="stack-inspector-box" data-atom="box" data-start="10.75" data-dur="0.75" class="bg-[#050508] border border-line p-5 sm:p-6 space-y-4 atom-unbuilt">
+            <!-- Populated by selectStackLayer(0) -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Column Sub-Cards Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div data-shell data-shell-start="11.50" class="cyber-card p-6 flex flex-col justify-between space-y-5 relative shell-unbuilt">
+          <div class="space-y-3">
+            <div data-atom="box" data-start="11.65" data-dur="0.45" class="inline-block px-2.5 py-1 bg-crimson text-white font-mono text-[9.5px] font-bold uppercase tracking-widest atom-unbuilt">
+              SQL // DATA ANALYTICS
+            </div>
+            <div class="block">
+              <h3 data-atom="text" data-start="11.85" data-dur="0.55" class="font-display font-bold text-xl text-white inline-block atom-unbuilt">
+                Customer Segmentation Analysis Engine
+              </h3>
+            </div>
+            <p data-atom="text" data-start="12.15" data-dur="0.65" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Performed customer segmentation using purchase history and demographic data in MySQL to isolate high-value VIPs and inactive churn-risk customer groups.
+            </p>
+            <ul class="space-y-1.5 text-xs text-zinc-300 font-mono pt-1">
+              <li data-atom="text" data-start="12.45" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> Multi-table SQL Joins &amp; Subqueries</li>
+              <li data-atom="text" data-start="12.65" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> RFM Cohort Aggregations</li>
+              <li data-atom="text" data-start="12.85" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> Retention &amp; Targeted Marketing</li>
+            </ul>
+          </div>
+          <div data-atom="box" data-start="13.10" data-dur="0.45" class="pt-4 border-t border-line flex items-center justify-between font-mono text-[10px] text-zinc-500 atom-unbuilt">
+            <span>MySQL · Relational SQL</span>
+            <a href="https://github.com/RohitSinhaa" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-crimsonBright">Source ↗</a>
+          </div>
+        </div>
+
+        <div data-shell data-shell-start="11.75" class="cyber-card p-6 flex flex-col justify-between space-y-5 relative shell-unbuilt">
+          <div class="space-y-3">
+            <div data-atom="box" data-start="11.90" data-dur="0.45" class="inline-block px-2.5 py-1 bg-crimson text-white font-mono text-[9.5px] font-bold uppercase tracking-widest atom-unbuilt">
+              BI // WORKFORCE KPI SUITE
+            </div>
+            <div class="block">
+              <h3 data-atom="text" data-start="12.10" data-dur="0.55" class="font-display font-bold text-xl text-white inline-block atom-unbuilt">
+                Employee Performance Metrics Dashboard
+              </h3>
+            </div>
+            <p data-atom="text" data-start="12.40" data-dur="0.65" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Built an interactive Power BI and Excel dashboard to monitor employee productivity, department-wise KPI comparisons, and organizational workforce trends.
+            </p>
+            <ul class="space-y-1.5 text-xs text-zinc-300 font-mono pt-1">
+              <li data-atom="text" data-start="12.70" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> Interactive Power BI Slicers</li>
+              <li data-atom="text" data-start="12.90" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> Excel VLOOKUP &amp; KPI Modeling</li>
+              <li data-atom="text" data-start="13.10" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> Department Engagement Analysis</li>
+            </ul>
+          </div>
+          <div data-atom="box" data-start="13.35" data-dur="0.45" class="pt-4 border-t border-line flex items-center justify-between font-mono text-[10px] text-zinc-500 atom-unbuilt">
+            <span>Power BI · Excel</span>
+            <a href="https://github.com/RohitSinhaa" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-crimsonBright">Source ↗</a>
+          </div>
+        </div>
+
+        <div data-shell data-shell-start="12.00" class="cyber-card p-6 flex flex-col justify-between space-y-5 relative shell-unbuilt">
+          <div class="space-y-3">
+            <div data-atom="box" data-start="12.15" data-dur="0.45" class="inline-block px-2.5 py-1 bg-crimson text-white font-mono text-[9.5px] font-bold uppercase tracking-widest atom-unbuilt">
+              ECE // EMBEDDED TELEMETRY
+            </div>
+            <div class="block">
+              <h3 data-atom="text" data-start="12.35" data-dur="0.55" class="font-display font-bold text-xl text-white inline-block atom-unbuilt">
+                Vehicle-to-Vehicle (V2V) Collision System
+              </h3>
+            </div>
+            <p data-atom="text" data-start="12.65" data-dur="0.65" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Developed a real-time wireless V2V communication system using ESP32 and ESP-NOW protocol, processing GPS and ultrasonic sensor data for collision-risk alerts.
+            </p>
+            <ul class="space-y-1.5 text-xs text-zinc-300 font-mono pt-1">
+              <li data-atom="text" data-start="12.95" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> ESP32 &amp; ESP-NOW 2.4GHz Mesh</li>
+              <li data-atom="text" data-start="13.15" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> GPS &amp; Ultrasonic Sensor Fusion</li>
+              <li data-atom="text" data-start="13.35" data-dur="0.45" class="flex items-center gap-2 atom-unbuilt"><span class="text-crimsonBright">•</span> 16x2 LCD &amp; Buzzer Safety Alerts</li>
+            </ul>
+          </div>
+          <div data-atom="box" data-start="13.60" data-dur="0.45" class="pt-4 border-t border-line flex items-center justify-between font-mono text-[10px] text-zinc-500 atom-unbuilt">
+            <span>Embedded C · ESP32</span>
+            <a href="https://github.com/RohitSinhaa" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-crimsonBright">Source ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE DATA SCIENCE WORKBENCH: CUSTOMER SEGMENTATION + DATA MANAGEMENT & KPI -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+        <!-- Simulator 1: Customer Segmentation SQL & RFM Cohort Engine -->
+        <div data-shell data-shell-start="13.65" class="cyber-card p-6 space-y-4 relative shell-unbuilt">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3">
+            <div>
+              <div data-atom="text" data-start="13.70" data-dur="0.35" class="font-mono text-[9.5px] text-crimsonBright font-bold uppercase tracking-wider atom-unbuilt">DATA SCIENCE PROJECT 01 // MYSQL COHORT ENGINE</div>
+              <h4 data-atom="text" data-start="13.80" data-dur="0.40" class="font-display font-bold text-base sm:text-lg text-white atom-unbuilt">Interactive Customer Segmentation Explorer</h4>
+            </div>
+            <div class="flex items-center gap-1 font-mono text-[10px]">
+              <button onclick="filterCustomerSegment('all')" id="seg-btn-all" class="px-2.5 py-1 bg-crimson text-white border border-crimsonBright font-semibold">All</button>
+              <button onclick="filterCustomerSegment('vip')" id="seg-btn-vip" class="px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line">VIP</button>
+              <button onclick="filterCustomerSegment('inactive')" id="seg-btn-inactive" class="px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line">Inactive</button>
+            </div>
+          </div>
+
+          <div data-atom="box" data-start="13.90" data-dur="0.45" id="seg-bars-container" class="space-y-3 pt-1 font-mono text-[11px] atom-unbuilt">
+            <!-- Dynamically updated by filterCustomerSegment() -->
+          </div>
+
+          <div class="bg-[#050508] border border-line p-3 font-mono text-[10px] text-zinc-400 flex items-center justify-between gap-2">
+            <code id="seg-sql-preview" class="truncate text-zinc-300">SELECT segment, COUNT(*) AS users, SUM(revenue) FROM purchases GROUP BY segment;</code>
+            <button onclick="copyContactValue(document.getElementById('seg-sql-preview').textContent)" class="text-crimsonBright hover:underline shrink-0">[Copy SQL]</button>
+          </div>
+        </div>
+
+        <!-- Simulator 2: Data Management (Pandas ETL) & Power BI KPI Slicer -->
+        <div data-shell data-shell-start="13.75" class="cyber-card p-6 space-y-4 relative shell-unbuilt">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-3">
+            <div>
+              <div data-atom="text" data-start="13.80" data-dur="0.35" class="font-mono text-[9.5px] text-crimsonBright font-bold uppercase tracking-wider atom-unbuilt">DATA SCIENCE PROJECT 02 // DATA MANAGEMENT &amp; KPI SUITE</div>
+              <h4 data-atom="text" data-start="13.90" data-dur="0.40" class="font-display font-bold text-base sm:text-lg text-white atom-unbuilt">Employee KPI &amp; Pandas ETL Management</h4>
+            </div>
+            <div class="flex items-center gap-1 font-mono text-[10px]">
+              <button onclick="sliceKpiDepartment('all')" id="kpi-btn-all" class="px-2.5 py-1 bg-crimson text-white border border-crimsonBright font-semibold">All Depts</button>
+              <button onclick="sliceKpiDepartment('eng')" id="kpi-btn-eng" class="px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line">Engineering</button>
+              <button onclick="sliceKpiDepartment('ops')" id="kpi-btn-ops" class="px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line">Operations</button>
+              <button onclick="sliceKpiDepartment('sales')" id="kpi-btn-sales" class="px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line">Sales</button>
+            </div>
+          </div>
+
+          <div data-atom="box" data-start="14.00" data-dur="0.45" class="grid grid-cols-3 gap-3 pt-1 font-mono atom-unbuilt">
+            <div class="bg-[#050508] border border-line p-3 text-center">
+              <div class="text-[9px] text-zinc-500 uppercase">PRODUCTIVITY KPI</div>
+              <div id="kpi-prod-val" class="font-display font-bold text-xl text-emerald-400 mt-1">94.2%</div>
+            </div>
+            <div class="bg-[#050508] border border-line p-3 text-center">
+              <div class="text-[9px] text-zinc-500 uppercase">RECORDS CLEANED</div>
+              <div id="kpi-rows-val" class="font-display font-bold text-xl text-white mt-1">1,240</div>
+            </div>
+            <div class="bg-[#050508] border border-line p-3 text-center">
+              <div class="text-[9px] text-zinc-500 uppercase">ETL TIME SAVED</div>
+              <div id="kpi-etl-val" class="font-display font-bold text-xl text-crimsonBright mt-1">-30.0%</div>
+            </div>
+          </div>
+
+          <div class="bg-[#050508] border border-line p-3 space-y-2 font-mono text-[10px]">
+            <div class="flex items-center justify-between text-zinc-300">
+              <span>DEPARTMENT ENGAGEMENT &amp; SLA COMPLIANCE</span>
+              <span id="kpi-dept-label" class="text-crimsonBright font-bold">ALL DEPARTMENTS // ACTIVE</span>
+            </div>
+            <div class="w-full h-2 bg-zinc-900 overflow-hidden">
+              <div id="kpi-progress-bar" class="h-full bg-gradient-to-r from-crimson to-emerald-400 transition-all duration-300" style="width: 94%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4: ECE & V2V WIRELESS SIGNAL TELEMETRY LAB
+    ==================================================================== -->
+    <section id="ece-signals" class="space-y-8 pt-6">
+      <div class="space-y-1.5">
+        <div data-atom="text" data-start="14.10" data-dur="0.40" class="font-mono text-[10px] uppercase tracking-[0.2em] text-crimsonBright font-semibold inline-block atom-unbuilt">HARDWARE &amp; RF TELEMETRY</div>
+        <div class="block">
+          <h2 data-atom="text" data-start="14.35" data-dur="0.55" class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight inline-block atom-unbuilt">V2V &amp; Signal Waveform Lab</h2>
+        </div>
+        <div class="block">
+          <p data-atom="text" data-start="14.65" data-dur="0.50" class="text-xs sm:text-sm text-zinc-400 pt-1 inline-block atom-unbuilt">Bridging 2.4GHz RF carrier waves, ESP-NOW packet frames, and ultrasonic distance sensors for automotive safety.</p>
+        </div>
+      </div>
+
+      <div data-shell data-shell-start="14.95" class="cyber-card p-6 sm:p-8 space-y-6 relative shell-unbuilt">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-line pb-5">
+          <div class="space-y-1">
+            <div data-atom="text" data-start="15.10" data-dur="0.45" class="font-mono text-[10px] text-crimsonBright font-bold uppercase tracking-wider atom-unbuilt">ESP32 2.4GHz RF TRANSMITTER &amp; RECEIVER LAB</div>
+            <h3 data-atom="text" data-start="15.30" data-dur="0.55" class="font-display font-bold text-xl text-white atom-unbuilt">Real-Time Vehicle-to-Vehicle (V2V) Packet Modulation</h3>
+          </div>
+          <div class="flex items-center gap-1.5 font-mono text-[10px]">
+            <button onclick="setEceWaveMode('sine')" id="ewave-sine" data-atom="box" data-start="15.50" data-dur="0.40" class="px-3 py-1.5 bg-crimson text-white border border-crimsonBright font-semibold transition-all atom-unbuilt">RF Carrier (2.4GHz)</button>
+            <button onclick="setEceWaveMode('packet')" id="ewave-packet" data-atom="box" data-start="15.65" data-dur="0.40" class="px-3 py-1.5 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">ESP-NOW Frames</button>
+            <button onclick="setEceWaveMode('sonar')" id="ewave-sonar" data-atom="box" data-start="15.80" data-dur="0.40" class="px-3 py-1.5 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">Ultrasonic Echo</button>
+          </div>
+        </div>
+
+        <div data-atom="box" data-start="16.00" data-dur="0.75" class="bg-[#040406] border border-line p-4 relative overflow-hidden rounded atom-unbuilt">
+          <div class="absolute top-3 left-3 font-mono text-[9.5px] text-zinc-400 z-10 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="ece-wave-status">LIVE OSCILLOSCOPE // 2.4GHz RF MODULATION ACTIVE</span>
+          </div>
+          <canvas id="eceSignalCanvas" class="w-full h-44 sm:h-52 block"></canvas>
+        </div>
+
+        <!-- NEW: Interactive V2V Highway Collision & ESP-NOW Telemetry Model -->
+        <div data-atom="box" data-start="16.25" data-dur="0.70" class="bg-[#06060A] border border-line p-5 space-y-5 atom-unbuilt">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-line pb-4">
+            <div>
+              <div class="font-mono text-[10px] text-crimsonBright font-bold uppercase tracking-wider">INTERACTIVE V2V HARDWARE MODEL // ESP32 + HC-SR04 + NEO-6M GPS</div>
+              <h4 class="font-display font-bold text-base sm:text-lg text-white mt-0.5">Live Vehicular Mesh &amp; Ultrasonic Braking Simulator</h4>
+            </div>
+            <div class="flex items-center gap-3 font-mono text-xs">
+              <span class="text-zinc-400">Inter-Vehicle Distance:</span>
+              <input id="v2v-live-slider" type="range" min="6" max="85" value="34" class="w-28 sm:w-36 accent-crimson cursor-pointer h-1.5 bg-zinc-800" oninput="setV2VModelDistance(this.value)" />
+              <span id="v2v-dist-badge" class="px-2 py-0.5 bg-amber-500/20 border border-amber-500/50 text-amber-300 font-bold">34m</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            <!-- Live 2D V2V Radar & RF Wave Propagation Canvas -->
+            <div class="lg:col-span-8 bg-[#030305] border border-line rounded p-2 relative">
+              <div class="absolute top-2.5 left-3 font-mono text-[9px] text-zinc-400 z-10 flex items-center gap-3">
+                <span>TX: NODE_A (ESP32_MASTER)</span>
+                <span class="text-crimsonBright">⇄ 2.4GHz ESP-NOW</span>
+                <span>RX: NODE_B (ESP32_EGO)</span>
+              </div>
+              <canvas id="v2vModelCanvas" class="w-full h-36 sm:h-40 block"></canvas>
+            </div>
+
+            <!-- Simulated 16x2 I2C Character LCD + Buzzer + RSSI Hardware Panel -->
+            <div class="lg:col-span-4 space-y-3">
+              <div class="p-3.5 rounded bg-[#0A190E] border-2 border-[#1E3F24] shadow-[inset_0_0_20px_rgba(16,185,129,0.18)] font-mono">
+                <div class="flex items-center justify-between text-[9px] text-emerald-500/70 mb-1.5">
+                  <span>HD44780 16x2 I2C LCD</span>
+                  <span>0x27 ADDR</span>
+                </div>
+                <div class="bg-[#0F2916] border border-emerald-500/30 p-2.5 rounded text-emerald-300 text-xs leading-relaxed tracking-widest uppercase shadow-inner">
+                  <div id="lcd-line-1">DIST:034m SPD:62</div>
+                  <div id="lcd-line-2" class="text-amber-300 font-bold">WARN: SLOW DOWN!</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5 font-mono text-[10px]">
+                <div class="bg-[#09090F] border border-line p-2.5">
+                  <div class="text-zinc-500">ESP-NOW RSSI</div>
+                  <div id="v2v-rssi-val" class="text-white font-bold text-xs mt-0.5">-58 dBm</div>
+                </div>
+                <div class="bg-[#09090F] border border-line p-2.5">
+                  <div class="text-zinc-500">PIEZO BUZZER</div>
+                  <div id="v2v-buzzer-val" class="text-amber-400 font-bold text-xs mt-0.5">CHIRP (2Hz)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+          <div data-atom="box" data-start="16.50" data-dur="0.45" class="bg-[#08080C] border border-line p-4 space-y-1.5 atom-unbuilt">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">TRANSMIT POWER</div>
+            <div class="font-display font-bold text-lg text-white">+19.5 dBm (ESP32 RF)</div>
+            <p class="text-[11px] text-zinc-400">Optimized link margin for outdoor vehicular wireless range up to 250m line-of-sight.</p>
+          </div>
+          <div data-atom="box" data-start="16.70" data-dur="0.45" class="bg-[#08080C] border border-line p-4 space-y-1.5 atom-unbuilt">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">SENSOR FUSION LATENCY</div>
+            <div class="font-display font-bold text-lg text-crimsonBright">&lt; 12.4 ms</div>
+            <p class="text-[11px] text-zinc-400">Sub-millisecond interrupt handling on ESP32 dual-core Xtensa for instant ultrasonic braking alerts.</p>
+          </div>
+          <div data-atom="box" data-start="16.90" data-dur="0.45" class="bg-[#08080C] border border-line p-4 space-y-1.5 atom-unbuilt">
+            <div class="font-mono text-[10px] text-zinc-500 uppercase">BEEPER &amp; LCD FEEDBACK</div>
+            <div class="font-display font-bold text-lg text-emerald-400">16x2 I2C LCD // 3.2kHz</div>
+            <p class="text-[11px] text-zinc-400">Acoustic buzzer duty-cycle scales non-linearly as inter-vehicle distance drops below 15m.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 5: THE SYSTEMS MATRIX (8 CARDS)
+    ==================================================================== -->
+    <section id="matrix" class="space-y-8 pt-6">
+      <div class="space-y-1.5">
+        <div data-atom="text" data-start="17.40" data-dur="0.40" class="font-mono text-[10px] uppercase tracking-[0.2em] text-crimsonBright font-semibold inline-block atom-unbuilt">ENGINEERING INDEX</div>
+        <div class="block">
+          <h2 data-atom="text" data-start="17.65" data-dur="0.55" class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight inline-block atom-unbuilt">The Systems Matrix</h2>
+        </div>
+        <div class="block">
+          <p data-atom="text" data-start="17.95" data-dur="0.50" class="text-xs sm:text-sm text-zinc-400 pt-1 inline-block atom-unbuilt">Specialized deployments, internships, academic credentials, and verified certifications.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="filterMatrixCards('all')" id="mfilter-all" data-atom="box" data-start="18.25" data-dur="0.40" class="px-3.5 py-1.5 font-mono text-[11px] font-semibold bg-crimson text-white border border-crimsonBright transition-all atom-unbuilt">
+          All Systems · 8
+        </button>
+        <button onclick="filterMatrixCards('ds')" id="mfilter-ds" data-atom="box" data-start="18.40" data-dur="0.40" class="px-3.5 py-1.5 font-mono text-[11px] font-medium bg-panel text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">
+          Data Science &amp; Cloud AI · 2
+        </button>
+        <button onclick="filterMatrixCards('bi')" id="mfilter-bi" data-atom="box" data-start="18.55" data-dur="0.40" class="px-3.5 py-1.5 font-mono text-[11px] font-medium bg-panel text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">
+          SQL &amp; Power BI · 2
+        </button>
+        <button onclick="filterMatrixCards('ece')" id="mfilter-ece" data-atom="box" data-start="18.70" data-dur="0.40" class="px-3.5 py-1.5 font-mono text-[11px] font-medium bg-panel text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">
+          ECE &amp; Embedded · 1
+        </button>
+        <button onclick="filterMatrixCards('edu')" id="mfilter-edu" data-atom="box" data-start="18.85" data-dur="0.40" class="px-3.5 py-1.5 font-mono text-[11px] font-medium bg-panel text-zinc-400 hover:text-white border border-line transition-all atom-unbuilt">
+          Education &amp; Certs · 3
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article data-mcat="ds" data-shell data-shell-start="19.10" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="19.20" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">SUPRMENTR INTERN</span>
+              <span data-atom="text" data-start="19.30" data-dur="0.40" class="text-zinc-500 atom-unbuilt">FEB–MAY 2026</span>
+            </div>
+            <h3 data-atom="text" data-start="19.45" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">AI with Cloud Computing</h3>
+            <p data-atom="text" data-start="19.65" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Developed predictive ML models on AWS &amp; Azure cloud infrastructure, optimizing compute utilization and deriving actionable business insights.
+            </p>
+          </div>
+          <div data-atom="text" data-start="19.90" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">AWS · Azure · Predictive ML</div>
+        </article>
+
+        <article data-mcat="ds" data-shell data-shell-start="19.30" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="19.40" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">SKILLCRAFT INTERN</span>
+              <span data-atom="text" data-start="19.50" data-dur="0.40" class="text-zinc-500 atom-unbuilt">SEP–OCT 2025</span>
+            </div>
+            <h3 data-atom="text" data-start="19.65" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">Automated Python ETL &amp; BI</h3>
+            <p data-atom="text" data-start="19.85" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Built interactive Power BI dashboards for 1,000+ structured records and automated Pandas data cleaning, reducing manual reporting time by 30%.
+            </p>
+          </div>
+          <div data-atom="text" data-start="20.10" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">Python · Pandas · Power BI</div>
+        </article>
+
+        <article data-mcat="bi" data-shell data-shell-start="19.50" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="19.60" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">SQL ANALYTICS</span>
+              <span data-atom="text" data-start="19.70" data-dur="0.40" class="text-zinc-500 atom-unbuilt">MYSQL</span>
+            </div>
+            <h3 data-atom="text" data-start="19.85" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">Customer Cohort Engine</h3>
+            <p data-atom="text" data-start="20.05" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Applied SQL joins, subqueries, and aggregations on purchase history and demographics to isolate high-value VIPs and inactive customer groups.
+            </p>
+          </div>
+          <div data-atom="text" data-start="20.30" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">SQL · MySQL · Retention</div>
+        </article>
+
+        <article data-mcat="bi" data-shell data-shell-start="19.70" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="19.80" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">BI DASHBOARD</span>
+              <span data-atom="text" data-start="19.90" data-dur="0.40" class="text-zinc-500 atom-unbuilt">KPI SUITE</span>
+            </div>
+            <h3 data-atom="text" data-start="20.05" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">Workforce Performance</h3>
+            <p data-atom="text" data-start="20.25" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Created KPI-based Power BI &amp; Excel reports for department-wise performance comparison, workforce productivity, and engagement analysis.
+            </p>
+          </div>
+          <div data-atom="text" data-start="20.50" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">Power BI · Excel · VLOOKUP</div>
+        </article>
+
+        <article data-mcat="ece" data-shell data-shell-start="20.10" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="20.20" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">EMBEDDED ECE</span>
+              <span data-atom="text" data-start="20.30" data-dur="0.40" class="text-zinc-500 atom-unbuilt">ESP32</span>
+            </div>
+            <h3 data-atom="text" data-start="20.45" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">V2V Wireless Telemetry</h3>
+            <p data-atom="text" data-start="20.65" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Real-time peer-to-peer ESP-NOW vehicular communication fusing GPS and ultrasonic sensors for collision-risk alerts on LCD &amp; buzzer.
+            </p>
+          </div>
+          <div data-atom="text" data-start="20.90" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">ESP32 · ESP-NOW · Embedded C</div>
+        </article>
+
+        <article data-mcat="edu" data-shell data-shell-start="20.30" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="20.40" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">RNSIT BENGALURU</span>
+              <span data-atom="text" data-start="20.50" data-dur="0.40" class="text-zinc-500 atom-unbuilt">MAY 2026</span>
+            </div>
+            <h3 data-atom="text" data-start="20.65" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">B.E. Electronics &amp; Comm.</h3>
+            <p data-atom="text" data-start="20.85" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Graduated with 7.92 / 10.00 CGPA in Electronics and Communication Engineering at RNS Institute of Technology, Bengaluru.
+            </p>
+          </div>
+          <div data-atom="text" data-start="21.10" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">CGPA 7.92 · Digital Systems</div>
+        </article>
+
+        <article data-mcat="edu" data-shell data-shell-start="20.50" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="20.60" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">QSPIDERS PRO</span>
+              <span data-atom="text" data-start="20.70" data-dur="0.40" class="text-zinc-500 atom-unbuilt">FEB 2027</span>
+            </div>
+            <h3 data-atom="text" data-start="20.85" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">Data Science &amp; AI Program</h3>
+            <p data-atom="text" data-start="21.05" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Intensive professional training in Python, SQL, Machine Learning, and enterprise analytics in Bengaluru, Karnataka.
+            </p>
+          </div>
+          <div data-atom="text" data-start="21.30" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">Python · SQL · AI/ML</div>
+        </article>
+
+        <article data-mcat="edu" data-shell data-shell-start="20.70" class="mcard cyber-card p-5 flex flex-col justify-between space-y-5 shell-unbuilt">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[9.5px]">
+              <span data-atom="box" data-start="20.80" data-dur="0.40" class="px-2 py-0.5 bg-crimson text-white font-bold uppercase atom-unbuilt">CERTIFICATIONS</span>
+              <span data-atom="text" data-start="20.90" data-dur="0.40" class="text-zinc-500 atom-unbuilt">IBM &amp; FCC</span>
+            </div>
+            <h3 data-atom="text" data-start="21.05" data-dur="0.50" class="font-display font-bold text-base text-white inline-block atom-unbuilt">IBM GenAI &amp; FreeCodeCamp</h3>
+            <p data-atom="text" data-start="21.25" data-dur="0.60" class="text-xs text-zinc-400 leading-relaxed atom-unbuilt">
+              Verified credentials in Python Using Data Analysis (FreeCodeCamp), Generative AI Prompt Engineering (IBM), and Intro to AI (IBM).
+            </p>
+          </div>
+          <div data-atom="text" data-start="21.50" data-dur="0.40" class="pt-3 border-t border-line font-mono text-[10px] text-zinc-500 atom-unbuilt">IBM · FreeCodeCamp</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 6: CONTACT FOOTER
+    ==================================================================== -->
+    <section id="contact" class="pt-14 pb-10 border-t border-line text-center space-y-7 max-w-2xl mx-auto">
+      <div class="space-y-2">
+        <div data-atom="text" data-start="22.00" data-dur="0.40" class="font-mono text-[10px] uppercase tracking-[0.24em] text-crimsonBright font-semibold inline-block atom-unbuilt">
+          DIRECT CHANNEL
+        </div>
+        <div class="block">
+          <h2 data-atom="text" data-start="22.30" data-dur="0.65" class="font-display font-bold text-3xl sm:text-5xl text-white tracking-tight leading-tight inline-block atom-unbuilt">
+            Let's Architect Something Extraordinary.
+          </h2>
+        </div>
+        <div class="block">
+          <p data-atom="text" data-start="22.75" data-dur="0.60" class="text-xs sm:text-sm text-zinc-400 pt-1 inline-block atom-unbuilt">
+            Available for Data Science, AI/ML Engineering, SQL &amp; Power BI Analytics, and Embedded Systems roles in Bengaluru &amp; worldwide.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <button onclick="copyContactValue('rohitsinha2203@gmail.com')" data-atom="box" data-start="23.20" data-dur="0.50" class="px-5 py-3 bg-panel hover:bg-panelHover border border-line font-mono text-xs text-zinc-200 transition-all atom-unbuilt">
+          rohitsinha2203@gmail.com
+        </button>
+        <a href="mailto:rohitsinha2203@gmail.com?subject=Opportunity%20for%20Rohit%20Sinha" data-atom="box" data-start="23.45" data-dur="0.50" class="px-6 py-3 bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_30px_rgba(217,20,20,0.45)] transition-all atom-unbuilt">
+          ↗ Start A Conversation
+        </a>
+      </div>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-6 font-mono text-[11px] text-zinc-400">
+        <a href="https://github.com/RohitSinhaa" target="_blank" rel="noopener noreferrer" data-atom="text" data-start="23.80" data-dur="0.40" class="hover:text-white transition-colors atom-unbuilt">
+          ⌘ github.com/RohitSinhaa
+        </a>
+        <a href="https://linkedin.com/in/rohit-sinha" target="_blank" rel="noopener noreferrer" data-atom="text" data-start="24.00" data-dur="0.40" class="hover:text-white transition-colors atom-unbuilt">
+          ↗ linkedin.com/in/rohit-sinha
+        </a>
+        <button onclick="copyContactValue('+91-6205167727')" data-atom="text" data-start="24.20" data-dur="0.40" class="hover:text-white transition-colors atom-unbuilt">
+          ☎ +91-6205167727
+        </button>
+      </div>
+
+      <div data-atom="text" data-start="24.50" data-dur="0.45" class="pt-6 font-mono text-[10px] text-zinc-600 inline-block atom-unbuilt">
+        © 2026 Rohit Sinha. Engineered from first principles in Bengaluru, Karnataka.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       JAVASCRIPT: 20-AGENT WIREFRAME ENGINE + AUDIO + 2X SCROLLER
+  ====================================================================== -->
+  <script>
+    function showToast(msg) {
+      const container = document.getElementById('toast-box');
+      const el = document.createElement('div');
+      el.className = 'px-4 py-2 bg-[#0D0D12] border border-figma text-white font-mono text-xs shadow-lg';
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 250);
+      }, 2200);
+    }
+
+    function copyContactValue(val) {
+      const ta = document.createElement('textarea');
+      ta.value = val;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(`COPIED TO CLIPBOARD: ${val}`);
+      } catch (e) {
+        showToast(val);
+      }
+      document.body.removeChild(ta);
+    }
+
+    function swapPortraitPhoto(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = document.getElementById('rohit-custom-photo');
+        const svg = document.getElementById('default-noir-svg');
+        img.src = evt.target.result;
+        img.classList.remove('hidden');
+        svg.classList.add('opacity-10');
+        showToast('Custom Portrait Loaded with Crimson Filter');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* 5-Layer Stack Inspector */
+    const stackLayersData = [
+      {
+        code: 'LAYER 01 // SUB-MILLISECOND HARDWARE EDGE',
+        title: 'ESP32 & ESP-NOW Real-Time V2V Collision Telemetry',
+        desc: 'Direct peer-to-peer 2.4GHz wireless telemetry between vehicles using ESP32 microcontrollers. Fuses GPS coordinates and ultrasonic sensor distances in Embedded C to drive 16x2 LCD & acoustic buzzer safety alerts.',
+        badges: ['ESP32', 'ESP-NOW Protocol', 'Embedded C', 'GPS + Ultrasonic + LCD'],
+        v2v: true
+      },
+      {
+        code: 'LAYER 02 // AUTOMATED ETL FOUNDATION',
+        title: 'Python & Pandas Automated Data Cleaning Engine',
+        desc: 'Engineered at SkillCraft Technology to automate missing-value imputation, schema validation, and outlier filtering across 1,000+ structured records — reducing manual reporting time by 30%.',
+        badges: ['Python 3', 'Pandas', 'NumPy', '-30% Manual Reporting Time']
+      },
+      {
+        code: 'LAYER 03 // RELATIONAL COHORT ENGINE',
+        title: 'MySQL Multi-Table Joins & Customer Segmentation',
+        desc: 'Executes relational SQL joins, correlated subqueries, and lifetime-value aggregations over customer purchase histories and demographics to isolate High-Value VIPs from inactive churn-risk segments.',
+        badges: ['SQL', 'MySQL', 'Joins & Subqueries', 'Retention Strategy'],
+        sql: "SELECT segment, COUNT(customer_id) AS users, ROUND(AVG(ltv),2) AS avg_ltv FROM customer_cohorts GROUP BY segment ORDER BY avg_ltv DESC;"
+      },
+      {
+        code: 'LAYER 04 // CLOUD AI INFERENCE INFRASTRUCTURE',
+        title: 'AWS & Azure Predictive Machine Learning Core',
+        desc: 'Developed during the AI with Cloud Computing Internship at SuprMentr Technologies Pvt Ltd. Deploys predictive machine learning models on public cloud infrastructure with optimized compute utilization.',
+        badges: ['AWS Basics', 'Azure Basics', 'Predictive ML', 'IBM GenAI Certified']
+      },
+      {
+        code: 'LAYER 05 // EXECUTIVE DECISION INTELLIGENCE',
+        title: 'Power BI & Excel Interactive KPI Suite',
+        desc: 'Monitors organizational productivity and department-wise workforce engagement trends with dynamic KPI slicers, VLOOKUP data models, and automated improvement indicators.',
+        badges: ['Power BI', 'Excel VLOOKUP', 'KPI Dashboards', '1,000+ Records']
+      }
+    ];
+
+    function selectStackLayer(idx) {
+      for (let i = 0; i < 5; i++) {
+        const btn = document.getElementById(`stack-btn-${i}`);
+        if (!btn) continue;
+        if (i === idx) {
+          btn.className = 'px-3.5 py-2 font-mono text-[11px] font-semibold bg-crimson text-white border border-crimsonBright transition-all text-left truncate';
+        } else {
+          btn.className = 'px-3.5 py-2 font-mono text-[11px] font-medium bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all text-left truncate';
+        }
+      }
+
+      const item = stackLayersData[idx];
+      const box = document.getElementById('stack-inspector-box');
+      if (!box) return;
+
+      let extraHTML = '';
+      if (item.sql) {
+        extraHTML = `
+          <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#09090E] border border-line p-3 font-mono text-[11px] text-zinc-300">
+            <code class="truncate">${item.sql}</code>
+            <button onclick="copyContactValue('${item.sql}')" class="text-crimsonBright hover:underline shrink-0">[Copy SQL]</button>
+          </div>
+        `;
+      } else if (item.v2v) {
+        extraHTML = `
+          <div class="pt-2 bg-[#09090E] border border-line p-3 space-y-2 font-mono text-[11px]">
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">V2V ULTRASONIC DISTANCE SIMULATOR:</span>
+              <span id="v2v-sim-label" class="text-emerald-400 font-bold">38m // SAFE CLEARANCE (LCD: OK)</span>
+            </div>
+            <input type="range" min="6" max="90" value="38" class="w-full accent-crimson cursor-pointer h-1.5 bg-zinc-800" oninput="updateV2VSim(this.value)" />
+          </div>
+        `;
+      }
+
+      box.innerHTML = `
+        <div class="space-y-1.5">
+          <div class="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-crimsonBright">${item.code}</div>
+          <h4 class="font-display font-bold text-lg sm:text-xl text-white">${item.title}</h4>
+          <p class="text-xs sm:text-[13px] text-zinc-400 leading-relaxed max-w-3xl">${item.desc}</p>
+        </div>
+        ${extraHTML}
+        <div class="flex flex-wrap gap-2 pt-1">
+          ${item.badges.map(b => `<span class="px-2.5 py-1 bg-[#0C0C12] border border-line font-mono text-[10px] text-zinc-300">${b}</span>`).join('')}
+        </div>
+      `;
+    }
+
+    function updateV2VSim(val) {
+      const d = parseInt(val, 10);
+      const lbl = document.getElementById('v2v-sim-label');
+      if (!lbl) return;
+      if (d < 20) {
+        lbl.textContent = `${d}m // CRITICAL COLLISION ALERT (BUZZER ON!)`;
+        lbl.className = 'text-crimsonBright font-bold animate-pulse';
+      } else if (d < 35) {
+        lbl.textContent = `${d}m // CAUTION PROXIMITY WARNING`;
+        lbl.className = 'text-amber-400 font-bold';
+      } else {
+        lbl.textContent = `${d}m // SAFE CLEARANCE (LCD: OK)`;
+        lbl.className = 'text-emerald-400 font-bold';
+      }
+    }
+
+    /* Interactive Data Science Simulators: Customer Segmentation + Data Management & KPI */
+    const customerSegmentsData = [
+      { id: 'vip', name: 'High-Value VIP Cohort', count: 312, rev: '54% Share', pct: 88, color: '#FF252E', sql: "SELECT customer_id, SUM(amount) AS ltv FROM orders GROUP BY customer_id HAVING ltv > 50000 ORDER BY ltv DESC;" },
+      { id: 'repeat', name: 'Active Repeat Buyers', count: 498, rev: '34% Share', pct: 64, color: '#0D99FF', sql: "SELECT customer_id, COUNT(order_id) AS freq FROM orders GROUP BY customer_id HAVING freq >= 3;" },
+      { id: 'inactive', name: 'Inactive / Churn-Risk Group', count: 230, rev: '12% Share', pct: 28, color: '#F59E0B', sql: "SELECT c.customer_id, MAX(o.order_date) AS last_seen FROM customers c LEFT JOIN orders o ON c.id = o.cid GROUP BY c.customer_id HAVING DATEDIFF(NOW(), last_seen) > 90;" }
+    ];
+
+    function filterCustomerSegment(segKey) {
+      ['all', 'vip', 'inactive'].forEach(k => {
+        const b = document.getElementById(`seg-btn-${k}`);
+        if (!b) return;
+        b.className = k === segKey
+          ? 'px-2.5 py-1 bg-crimson text-white border border-crimsonBright font-semibold'
+          : 'px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line';
+      });
+
+      const container = document.getElementById('seg-bars-container');
+      const sqlPreview = document.getElementById('seg-sql-preview');
+      if (!container) return;
+
+      const list = segKey === 'all'
+        ? customerSegmentsData
+        : customerSegmentsData.filter(s => s.id === segKey);
+
+      if (sqlPreview) {
+        sqlPreview.textContent = segKey === 'all'
+          ? 'SELECT segment, COUNT(*) AS users, SUM(revenue) FROM purchases GROUP BY segment;'
+          : list[0].sql;
+      }
+
+      container.innerHTML = list.map(s => `
+        <div class="space-y-1">
+          <div class="flex justify-between text-[10.5px]">
+            <span class="text-white font-semibold">${s.name}</span>
+            <span class="text-zinc-400">${s.count} Customers · <strong class="text-zinc-200">${s.rev}</strong></span>
+          </div>
+          <div class="w-full h-2 bg-zinc-900 overflow-hidden">
+            <div class="h-full transition-all duration-300" style="width:${s.pct}%; background:${s.color}"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const kpiDeptData = {
+      all: { prod: '94.2%', rows: '1,240', etl: '-30.0%', label: 'ALL DEPARTMENTS // ACTIVE', width: '94%' },
+      eng: { prod: '97.1%', rows: '480', etl: '-34.5%', label: 'ENGINEERING // HIGH VELOCITY', width: '97%' },
+      ops: { prod: '91.8%', rows: '410', etl: '-28.0%', label: 'OPERATIONS // SLA STABLE', width: '92%' },
+      sales: { prod: '93.5%', rows: '350', etl: '-29.2%', label: 'SALES & RETENTION // TARGET MET', width: '93%' }
+    };
+
+    function sliceKpiDepartment(dept) {
+      ['all', 'eng', 'ops', 'sales'].forEach(k => {
+        const b = document.getElementById(`kpi-btn-${k}`);
+        if (!b) return;
+        b.className = k === dept
+          ? 'px-2.5 py-1 bg-crimson text-white border border-crimsonBright font-semibold'
+          : 'px-2.5 py-1 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line';
+      });
+
+      const d = kpiDeptData[dept] || kpiDeptData.all;
+      const pEl = document.getElementById('kpi-prod-val');
+      const rEl = document.getElementById('kpi-rows-val');
+      const eEl = document.getElementById('kpi-etl-val');
+      const lEl = document.getElementById('kpi-dept-label');
+      const bar = document.getElementById('kpi-progress-bar');
+
+      if (pEl) pEl.textContent = d.prod;
+      if (rEl) rEl.textContent = d.rows;
+      if (eEl) eEl.textContent = d.etl;
+      if (lEl) lEl.textContent = d.label;
+      if (bar) bar.style.width = d.width;
+    }
+
+    /* ECE Signal Oscilloscope */
+    let eceWaveMode = 'sine';
+    let eceTime = 0;
+
+    function setEceWaveMode(mode) {
+      eceWaveMode = mode;
+      ['sine', 'packet', 'sonar'].forEach(m => {
+        const btn = document.getElementById(`ewave-${m}`);
+        if (!btn) return;
+        if (m === mode) {
+          btn.className = 'px-3 py-1.5 bg-crimson text-white border border-crimsonBright font-semibold transition-all';
+        } else {
+          btn.className = 'px-3 py-1.5 bg-[#0C0C12] text-zinc-400 hover:text-white border border-line transition-all';
+        }
+      });
+      const lbl = document.getElementById('ece-wave-status');
+      if (lbl) {
+        if (mode === 'sine') lbl.textContent = 'LIVE OSCILLOSCOPE // 2.4GHz RF MODULATION ACTIVE';
+        if (mode === 'packet') lbl.textContent = 'ESP-NOW WIRELESS PROTOCOL // 250-BYTE MAC FRAMES';
+        if (mode === 'sonar') lbl.textContent = 'HC-SR04 ULTRASONIC ECHO TIME-OF-FLIGHT PULSE';
+      }
+    }
+
+    function renderEceOscilloscope() {
+      const cvs = document.getElementById('eceSignalCanvas');
+      if (!cvs) return;
+      const cctx = cvs.getContext('2d');
+      if (cvs.width !== cvs.clientWidth || cvs.height !== cvs.clientHeight) {
+        cvs.width = cvs.clientWidth;
+        cvs.height = cvs.clientHeight;
+      }
+
+      cctx.fillStyle = '#040406';
+      cctx.fillRect(0, 0, cvs.width, cvs.height);
+
+      cctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      cctx.lineWidth = 1;
+      const stepX = cvs.width / 10;
+      const stepY = cvs.height / 6;
+      for (let x = 0; x < cvs.width; x += stepX) {
+        cctx.beginPath(); cctx.moveTo(x, 0); cctx.lineTo(x, cvs.height); cctx.stroke();
+      }
+      for (let y = 0; y < cvs.height; y += stepY) {
+        cctx.beginPath(); cctx.moveTo(0, y); cctx.lineTo(cvs.width, y); cctx.stroke();
+      }
+
+      eceTime += 0.04;
+      cctx.lineWidth = 2.2;
+      cctx.strokeStyle = eceWaveMode === 'packet' ? '#0D99FF' : (eceWaveMode === 'sonar' ? '#10B981' : '#FF252E');
+      cctx.beginPath();
+
+      const midY = cvs.height / 2;
+      const amp = cvs.height * 0.32;
+
+      for (let x = 0; x < cvs.width; x++) {
+        let y = midY;
+        const normX = (x / cvs.width) * Math.PI * 6;
+        if (eceWaveMode === 'sine') {
+          y = midY + Math.sin(normX + eceTime * 3) * amp * Math.cos((normX + eceTime) * 0.2);
+        } else if (eceWaveMode === 'packet') {
+          const p = Math.floor((normX + eceTime * 2) * 1.5) % 4;
+          y = midY + (p === 0 || p === 1 ? -amp * 0.75 : amp * 0.75);
+        } else {
+          const phase = (normX + eceTime * 4) % (Math.PI * 2);
+          y = midY + Math.sin(phase * 4) * (amp * Math.exp(-Math.abs(phase - Math.PI) * 0.8));
+        }
+
+        if (x === 0) cctx.moveTo(x, y);
+        else cctx.lineTo(x, y);
+      }
+      cctx.stroke();
+    }
+
+    /* Interactive 2D V2V Highway Collision & ESP-NOW Wave Model */
+    let v2vLiveDist = 34;
+    let v2vWaveTick = 0;
+
+    function setV2VModelDistance(val) {
+      v2vLiveDist = parseInt(val, 10);
+      const badge = document.getElementById('v2v-dist-badge');
+      const l1 = document.getElementById('lcd-line-1');
+      const l2 = document.getElementById('lcd-line-2');
+      const rssi = document.getElementById('v2v-rssi-val');
+      const buz = document.getElementById('v2v-buzzer-val');
+
+      const padded = String(v2vLiveDist).padStart(3, '0');
+      if (l1) l1.textContent = `DIST:${padded}m SPD:64`;
+
+      const calcRssi = Math.round(-42 - v2vLiveDist * 0.48);
+      if (rssi) rssi.textContent = `${calcRssi} dBm`;
+
+      if (v2vLiveDist < 20) {
+        if (badge) {
+          badge.textContent = `${v2vLiveDist}m // CRITICAL`;
+          badge.className = 'px-2 py-0.5 bg-crimson/30 border border-crimsonBright text-crimsonBright font-bold animate-pulse';
+        }
+        if (l2) {
+          l2.textContent = 'ALRT: BRAKE NOW!';
+          l2.className = 'text-crimsonBright font-bold animate-pulse';
+        }
+        if (buz) {
+          buz.textContent = '3.2kHz ALARM!';
+          buz.className = 'text-crimsonBright font-bold animate-pulse text-xs mt-0.5';
+        }
+      } else if (v2vLiveDist < 40) {
+        if (badge) {
+          badge.textContent = `${v2vLiveDist}m // CAUTION`;
+          badge.className = 'px-2 py-0.5 bg-amber-500/20 border border-amber-500/50 text-amber-300 font-bold';
+        }
+        if (l2) {
+          l2.textContent = 'WARN: SLOW DOWN!';
+          l2.className = 'text-amber-300 font-bold';
+        }
+        if (buz) {
+          buz.textContent = 'CHIRP (2Hz)';
+          buz.className = 'text-amber-400 font-bold text-xs mt-0.5';
+        }
+      } else {
+        if (badge) {
+          badge.textContent = `${v2vLiveDist}m // SAFE`;
+          badge.className = 'px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-bold';
+        }
+        if (l2) {
+          l2.textContent = 'STAT: CLEAR ROAD';
+          l2.className = 'text-emerald-300 font-bold';
+        }
+        if (buz) {
+          buz.textContent = 'STANDBY (OFF)';
+          buz.className = 'text-emerald-400 font-bold text-xs mt-0.5';
+        }
+      }
+    }
+
+    function renderV2VModelCanvas() {
+      const cvs = document.getElementById('v2vModelCanvas');
+      if (!cvs) return;
+      const mctx = cvs.getContext('2d');
+      if (cvs.width !== cvs.clientWidth || cvs.height !== cvs.clientHeight) {
+        cvs.width = cvs.clientWidth;
+        cvs.height = cvs.clientHeight;
+      }
+
+      const w = cvs.width;
+      const h = cvs.height;
+      v2vWaveTick += 0.06;
+
+      mctx.fillStyle = '#030305';
+      mctx.fillRect(0, 0, w, h);
+
+      // Highway Lane Markings
+      const roadY = h * 0.56;
+      mctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      mctx.lineWidth = 1;
+      mctx.beginPath();
+      mctx.moveTo(0, roadY - 28); mctx.lineTo(w, roadY - 28);
+      mctx.moveTo(0, roadY + 28); mctx.lineTo(w, roadY + 28);
+      mctx.stroke();
+
+      mctx.save();
+      mctx.setLineDash([14, 12]);
+      mctx.lineDashOffset = -v2vWaveTick * 24;
+      mctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      mctx.beginPath();
+      mctx.moveTo(0, roadY); mctx.lineTo(w, roadY);
+      mctx.stroke();
+      mctx.restore();
+
+      // Ego Vehicle (Left) & Lead Vehicle (Right position mapped to v2vLiveDist)
+      const car1X = Math.max(48, w * 0.16);
+      const normDist = (v2vLiveDist - 6) / (85 - 6);
+      const car2X = car1X + 75 + normDist * (w * 0.66 - 75);
+
+      const zoneColor = v2vLiveDist < 20 ? '#FF252E' : (v2vLiveDist < 40 ? '#F59E0B' : '#10B981');
+
+      // Ultrasonic Cone + Expanding RF Waves between vehicles
+      for (let r = 0; r < 4; r++) {
+        const prog = ((v2vWaveTick * 0.8 + r * 0.25) % 1);
+        const waveX = car1X + 26 + prog * (car2X - car1X - 52);
+        const arcRadius = 10 + prog * 18;
+        mctx.strokeStyle = zoneColor;
+        mctx.globalAlpha = 1 - prog;
+        mctx.lineWidth = 1.8;
+        mctx.beginPath();
+        mctx.arc(waveX, roadY, arcRadius, -0.65, 0.65);
+        mctx.stroke();
+      }
+      mctx.globalAlpha = 1;
+
+      // Draw Ego Vehicle (ESP32 Node B)
+      mctx.fillStyle = '#0D99FF';
+      mctx.fillRect(car1X - 24, roadY - 12, 48, 24);
+      mctx.fillStyle = '#FFFFFF';
+      mctx.font = 'bold 9px "JetBrains Mono", monospace';
+      mctx.fillText('EGO_ESP32', car1X - 24, roadY - 17);
+
+      // Draw Lead Vehicle (ESP32 Node A)
+      mctx.fillStyle = zoneColor;
+      mctx.fillRect(car2X - 24, roadY - 12, 48, 24);
+      mctx.fillStyle = '#FFFFFF';
+      mctx.fillText(`LEAD (${v2vLiveDist}m)`, car2X - 24, roadY - 17);
+    }
+
+    function filterMatrixCards(cat) {
+      document.querySelectorAll('.mcard').forEach(c => {
+        if (cat === 'all' || c.dataset.mcat === cat) {
+          c.classList.remove('hidden');
+        } else {
+          c.classList.add('hidden');
+        }
+      });
+
+      ['all', 'ds', 'bi', 'ece', 'edu'].forEach(k => {
+        const b = document.getElementById(`mfilter-${k}`);
+        if (!b) return;
+        if (k === cat) {
+          b.className = 'px-3.5 py-1.5 font-mono text-[11px] font-semibold bg-crimson text-white border border-crimsonBright transition-all';
+        } else {
+          b.className = 'px-3.5 py-1.5 font-mono text-[11px] font-medium bg-panel text-zinc-400 hover:text-white border border-line transition-all';
+        }
+      });
+    }
+
+    /* Web Audio Synthwave + Custom Song Engine */
+    let audioCtx = null;
+    let masterGain = null;
+    let isAudioMuted = false;
+    let audioUnlocked = false;
+    let waitingForFirstGesture = true;
+    let customTrackLoaded = false;
+    let lastScheduledStep = -1;
+
+    const customAudioEl = document.getElementById('custom-soundtrack');
+    const STEP_DUR = 0.153;
+    const LEAD_MELODY = [
+      369.99, 0, 440.00, 0, 554.37, 0, 739.99, 659.25,
+      554.37, 0, 440.00, 493.88, 554.37, 0, 369.99, 0,
+      329.63, 0, 440.00, 0, 554.37, 0, 659.25, 739.99,
+      659.25, 0, 554.37, 0, 440.00, 0, 329.63, 0
+    ];
+
+    function initWebAudio() {
+      if (audioCtx) return;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      audioCtx = new AC();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = isAudioMuted ? 0.0 : 0.35;
+      masterGain.connect(audioCtx.destination);
+    }
+
+    function triggerSynthNote(time, freq, dur) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const filter = audioCtx.createBiquadFilter();
+      const g = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(freq, time);
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1400, time);
+      g.gain.setValueAtTime(0.01, time);
+      g.gain.linearRampToValueAtTime(0.14, time + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, time + dur);
+      osc.connect(filter);
+      filter.connect(g);
+      g.connect(masterGain);
+      osc.start(time);
+      osc.stop(time + dur + 0.02);
+    }
+
+    function updateSynchronizedMusic(t) {
+      for (let i = 0; i < 5; i++) {
+        const bar = document.getElementById(`eq-b${i}`);
+        if (!bar) continue;
+        if (isAudioMuted || (!audioUnlocked && !customTrackLoaded)) {
+          bar.style.height = '3px';
+          bar.style.opacity = '0.35';
+        } else {
+          const wave = Math.abs(Math.sin(t * 11 + i * 1.35)) * 10 + 3;
+          bar.style.height = `${Math.round(wave)}px`;
+          bar.style.opacity = '1';
+        }
+      }
+
+      if (isAudioMuted) return;
+      if (customTrackLoaded) {
+        if (customAudioEl.paused) customAudioEl.play().catch(() => {});
+        return;
+      }
+      if (!audioCtx || audioCtx.state !== 'running' || t < 0.85) return;
+
+      const step = Math.floor((t - 0.85) / STEP_DUR);
+      if (step > lastScheduledStep) {
+        lastScheduledStep = step;
+        const note = LEAD_MELODY[step % LEAD_MELODY.length];
+        if (note > 0) triggerSynthNote(audioCtx.currentTime, note, STEP_DUR * 1.9);
+      }
+    }
+
+    function togglePortfolioAudio() {
+      initWebAudio();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      audioUnlocked = true;
+      isAudioMuted = !isAudioMuted;
+      if (masterGain && audioCtx) masterGain.gain.setValueAtTime(isAudioMuted ? 0 : 0.35, audioCtx.currentTime);
+      if (customTrackLoaded) customAudioEl.muted = isAudioMuted;
+      const lbl = document.getElementById('sound-toggle-label');
+      if (lbl) lbl.textContent = isAudioMuted ? 'OFF' : 'ON';
+    }
+
+    function loadCustomSongFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      customAudioEl.src = URL.createObjectURL(file);
+      customAudioEl.loop = true;
+      customAudioEl.muted = isAudioMuted;
+      customTrackLoaded = true;
+      audioUnlocked = true;
+      waitingForFirstGesture = false;
+      const prompt = document.getElementById('sound-unlock-prompt');
+      if (prompt) prompt.classList.add('hidden');
+      replayEntireBuild();
+      customAudioEl.currentTime = 0;
+      customAudioEl.play().catch(() => {});
+      showToast(`SYNCED CUSTOM SOUNDTRACK: ${file.name}`);
+    }
+
+    function unlockAudioAndLaunch() {
+      initWebAudio();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      audioUnlocked = true;
+      isAudioMuted = false;
+      waitingForFirstGesture = false;
+      const prompt = document.getElementById('sound-unlock-prompt');
+      if (prompt) prompt.classList.add('hidden');
+    }
+
+    ['click', 'keydown', 'touchstart'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        if (!audioUnlocked) unlockAudioAndLaunch();
+      }, { once: true, passive: true });
+    });
+
+    /* 20-Agent Physical Drag-Box & Typewriter Choreography Engine */
+    const canvas = document.getElementById('agentCursorCanvas');
+    const ctx = canvas.getContext('2d');
+    const CURSOR_COLORS = [
+      '#FF3B30', '#0D99FF', '#10B981', '#F59E0B', '#A855F7',
+      '#EC4899', '#06B6D4', '#84CC16', '#F97316', '#38BDF8',
+      '#FB7185', '#6366F1', '#22C55E', '#EAB308', '#D946EF',
+      '#14B8A6', '#F43F5E', '#3B82F6', '#A3E635', '#FBBF24'
+    ];
+
+    const TOTAL_TIMELINE_SEC = 26.8;
+    let simTime = 0;
+    let buildSpeed = 1; // Default 1x smooth speed so cursor animations are clearly visible
+    let lastFrameTs = null;
+    let isComplete = false;
+    let userManualScrollPauseUntil = 0;
+
+    ['wheel', 'touchmove'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        userManualScrollPauseUntil = performance.now() + 2500;
+      }, { passive: true });
+    });
+
+    let atoms = [];
+    let shells = [];
+    const cursors = [];
+
+    function initCursors() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      cursors.length = 0;
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      for (let i = 0; i < 20; i++) {
+        const angle = (i / 20) * Math.PI * 2;
+        const radius = 28 + (i % 3) * 12;
+        const sx = cx + Math.cos(angle) * radius;
+        const sy = cy + Math.sin(angle) * radius;
+        cursors.push({
+          id: i,
+          color: CURSOR_COLORS[i % CURSOR_COLORS.length],
+          x: sx, y: sy, prevX: sx, prevY: sy,
+          tx: sx, ty: sy,
+          angle,
+          orbitSpeed: 0.045 + (i % 5) * 0.006,
+          mode: 'pointer',
+          assignedAtom: null
+        });
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      measureAllAtomDimensions();
+    });
+
+    function measureAllAtomDimensions() {
+      atoms.forEach(a => {
+        const rect = a.el.getBoundingClientRect();
+        a.w = Math.max(36, Math.round(rect.width || 120));
+        a.h = Math.max(20, Math.round(rect.height || 28));
+      });
+    }
+
+    function registerTimelineElements() {
+      const atomEls = Array.from(document.querySelectorAll('[data-atom]'));
+      atoms = atomEls.map((el, idx) => {
+        const type = el.dataset.atom || 'box';
+        const start = parseFloat(el.dataset.start || '1.0');
+        // Extended duration (1.65x) so each cursor has time to smoothly drag the box and type
+        const dur = parseFloat(el.dataset.dur || '0.5') * 1.65;
+        const rect = el.getBoundingClientRect();
+
+        let textTargetNode = null;
+        let fullText = '';
+        if (type === 'text' && el.children.length === 0) {
+          textTargetNode = el;
+          fullText = el.textContent.trim();
+        } else if (type === 'rohit-badge') {
+          textTargetNode = document.getElementById('rohit-badge-text');
+          fullText = 'ROHIT.';
+        }
+
+        return {
+          idx, el, type, start, dur, end: start + dur,
+          w: Math.max(40, Math.round(rect.width || 140)),
+          h: Math.max(22, Math.round(rect.height || 30)),
+          textTargetNode, fullText,
+          assignedCursorId: idx % 20,
+          state: 'unbuilt',
+          overlayEl: null,
+          badgeEl: null
+        };
+      });
+
+      shells = Array.from(document.querySelectorAll('[data-shell]')).map(el => ({
+        el,
+        start: parseFloat(el.dataset.shellStart || '10.0')
+      }));
+    }
+
+    function ensureWireframeOverlay(atom) {
+      if (atom.overlayEl) return;
+      const overlay = document.createElement('div');
+      overlay.className = 'figma-wireframe-ui';
+      overlay.innerHTML = `
+        <span class="figma-corner-sq tl"></span>
+        <span class="figma-corner-sq tr"></span>
+        <span class="figma-corner-sq bl"></span>
+        <span class="figma-corner-sq br"></span>
+        <div class="figma-size-badge">0 × 0</div>
+      `;
+      atom.el.appendChild(overlay);
+      atom.overlayEl = overlay;
+      atom.badgeEl = overlay.querySelector('.figma-size-badge');
+    }
+
+    function removeWireframeOverlay(atom) {
+      if (atom.overlayEl) {
+        atom.overlayEl.remove();
+        atom.overlayEl = null;
+        atom.badgeEl = null;
+      }
+      if (atom.textTargetNode) {
+        atom.textTargetNode.classList.remove('type-caret');
+        atom.textTargetNode.textContent = atom.fullText;
+      }
+    }
+
+    function setSpeed(spd) {
+      buildSpeed = spd;
+      [1, 2, 5].forEach(s => {
+        const b = document.getElementById(`spd-${s}`);
+        if (!b) return;
+        b.className = s === spd
+          ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold transition-all'
+          : 'px-2 py-0.5 rounded text-zinc-400 hover:text-white transition-all';
+      });
+    }
+
+    function handleDockAction() {
+      if (!isComplete) {
+        waitingForFirstGesture = false;
+        const prompt = document.getElementById('sound-unlock-prompt');
+        if (prompt) prompt.classList.add('hidden');
+        simTime = TOTAL_TIMELINE_SEC + 0.5;
+        updateTimelineState(simTime);
+      } else {
+        replayEntireBuild();
+      }
+    }
+
+    function replayEntireBuild() {
+      isComplete = false;
+      simTime = 0;
+      lastFrameTs = null;
+      lastScheduledStep = -1;
+      window.scrollTo({ top: 0, behavior: 'auto' });
+
+      const pBox = document.getElementById('portrait-box');
+      const pSvg = document.getElementById('default-noir-svg');
+      const pGrid = document.getElementById('portrait-grid');
+      if (pBox) pBox.classList.remove('portrait-crimson-active');
+      if (pSvg) pSvg.classList.add('opacity-0');
+      if (pGrid) pGrid.classList.add('opacity-0');
+
+      shells.forEach(s => s.el.classList.add('shell-unbuilt'));
+      atoms.forEach(a => {
+        removeWireframeOverlay(a);
+        a.state = 'unbuilt';
+        a.el.classList.remove('atom-stretching', 'atom-typing', 'atom-done');
+        a.el.classList.add('atom-unbuilt');
+      });
+
+      measureAllAtomDimensions();
+      const seedWrap = document.getElementById('seed-square-wrap');
+      if (seedWrap) seedWrap.style.opacity = '1';
+
+      document.getElementById('dock-status-text').textContent = 'Building page...';
+      document.getElementById('dock-action-label').textContent = 'Skip';
+    }
+
+    function updateTimelineState(t) {
+      const seedWrap = document.getElementById('seed-square-wrap');
+      if (seedWrap) seedWrap.style.opacity = t < 0.85 ? '1' : '0';
+
+      shells.forEach(s => {
+        if (t >= s.start) s.el.classList.remove('shell-unbuilt');
+        else s.el.classList.add('shell-unbuilt');
+      });
+
+      const activeAtomsNow = [];
+
+      atoms.forEach(a => {
+        if (t < a.start) {
+          if (a.state !== 'unbuilt') {
+            removeWireframeOverlay(a);
+            a.el.classList.remove('atom-stretching', 'atom-typing', 'atom-done');
+            a.el.classList.add('atom-unbuilt');
+            a.state = 'unbuilt';
+          }
+        } else if (t >= a.start && t <= a.end) {
+          a.state = 'active';
+          activeAtomsNow.push(a);
+          a.el.classList.remove('atom-unbuilt', 'atom-done');
+          ensureWireframeOverlay(a);
+
+          const progress = Math.min(1, Math.max(0, (t - a.start) / a.dur));
+
+          if (a.type === 'portrait') {
+            const pBox = a.el;
+            const pSvg = document.getElementById('default-noir-svg');
+            const pGrid = document.getElementById('portrait-grid');
+            const stretchP = Math.min(1, progress / 0.35);
+            const easeStretch = 1 - Math.pow(1 - stretchP, 3);
+
+            if (a.overlayEl) {
+              a.overlayEl.style.width = `${Math.max(18, Math.round(a.w * easeStretch))}px`;
+              a.overlayEl.style.height = `${Math.max(18, Math.round(a.h * easeStretch))}px`;
+            }
+            if (a.badgeEl) {
+              a.badgeEl.textContent = `${Math.round(a.w * easeStretch)} × ${Math.round(a.h * easeStretch)}`;
+            }
+
+            if (progress < 0.35) {
+              pBox.classList.add('atom-stretching');
+              if (pSvg) pSvg.classList.add('opacity-0');
+              pBox.classList.remove('portrait-crimson-active');
+            } else if (progress < 0.72) {
+              pBox.classList.remove('atom-stretching');
+              pBox.classList.add('atom-typing');
+              if (pSvg) pSvg.classList.remove('opacity-0');
+              pBox.classList.remove('portrait-crimson-active');
+            } else {
+              pBox.classList.remove('atom-stretching');
+              pBox.classList.add('atom-typing');
+              if (pSvg) pSvg.classList.remove('opacity-0');
+              if (pGrid) pGrid.classList.remove('opacity-0');
+              pBox.classList.add('portrait-crimson-active');
+            }
+          } else {
+            if (progress < 0.40) {
+              const sp = progress / 0.40;
+              const easeOut = 1 - Math.pow(1 - sp, 3);
+              a.el.classList.add('atom-stretching');
+              a.el.classList.remove('atom-typing');
+              if (a.overlayEl) {
+                a.overlayEl.style.width = `${Math.max(16, Math.round(a.w * easeOut))}px`;
+                a.overlayEl.style.height = `${Math.max(14, Math.round(a.h * easeOut))}px`;
+              }
+              if (a.badgeEl) {
+                a.badgeEl.textContent = `${Math.round(a.w * easeOut)} × ${Math.round(a.h * easeOut)}`;
+              }
+            } else {
+              a.el.classList.remove('atom-stretching');
+              a.el.classList.add('atom-typing');
+              if (a.overlayEl) {
+                a.overlayEl.style.width = `${a.w}px`;
+                a.overlayEl.style.height = `${a.h}px`;
+              }
+              if (a.badgeEl) a.badgeEl.textContent = `${a.w} × ${a.h}`;
+
+              if (a.textTargetNode && a.fullText) {
+                const tp = (progress - 0.40) / 0.60;
+                const charCount = Math.max(1, Math.floor(a.fullText.length * tp));
+                a.textTargetNode.textContent = a.fullText.slice(0, charCount);
+                a.textTargetNode.classList.add('type-caret');
+              }
+            }
+          }
+        } else {
+          if (a.state !== 'done') {
+            removeWireframeOverlay(a);
+            a.el.classList.remove('atom-unbuilt', 'atom-stretching', 'atom-typing');
+            a.el.classList.add('atom-done');
+            a.state = 'done';
+
+            if (a.type === 'portrait') {
+              const pSvg = document.getElementById('default-noir-svg');
+              const pGrid = document.getElementById('portrait-grid');
+              if (pSvg) pSvg.classList.remove('opacity-0');
+              if (pGrid) pGrid.classList.remove('opacity-0');
+              a.el.classList.add('portrait-crimson-active');
+            }
+          }
+        }
+      });
+
+      if (t >= 0.85 && t < TOTAL_TIMELINE_SEC) {
+        const usedAtomIndices = new Set();
+        cursors.forEach((c, idx) => {
+          let chosen = activeAtomsNow.find(a => a.assignedCursorId === idx && !usedAtomIndices.has(a.idx));
+          if (!chosen) {
+            chosen = activeAtomsNow.find(a => !usedAtomIndices.has(a.idx)) || null;
+          }
+          if (chosen) {
+            usedAtomIndices.add(chosen.idx);
+            c.assignedAtom = chosen;
+            const prog = (t - chosen.start) / chosen.dur;
+            c.mode = prog < 0.40 ? 'crosshair' : (chosen.textTargetNode ? 'ibeam' : 'pointer');
+          } else {
+            c.assignedAtom = null;
+            c.mode = 'pointer';
+          }
+        });
+
+        /* 2x Fast Synchronized Viewport Auto-Scroller */
+        if (activeAtomsNow.length > 0 && t > 1.8 && performance.now() > userManualScrollPauseUntil) {
+          const sumTop = activeAtomsNow.reduce((acc, a) => acc + a.el.getBoundingClientRect().top, 0);
+          const avgTop = sumTop / activeAtomsNow.length;
+          const idealViewportY = window.innerHeight * 0.42;
+          const deltaY = avgTop - idealViewportY;
+          if (Math.abs(deltaY) > 8) {
+            window.scrollBy(0, deltaY * 0.88);
+          }
+        }
+      } else {
+        cursors.forEach(c => {
+          c.assignedAtom = null;
+          c.mode = 'pointer';
+        });
+      }
+
+      const statusEl = document.getElementById('dock-status-text');
+      const actionLbl = document.getElementById('dock-action-label');
+      if (t < 0.85) {
+        statusEl.textContent = 'Building page...';
+        actionLbl.textContent = 'Skip';
+      } else if (t < TOTAL_TIMELINE_SEC) {
+        statusEl.textContent = '20 agents';
+        actionLbl.textContent = 'Skip';
+      } else if (!isComplete) {
+        isComplete = true;
+        statusEl.textContent = 'Built by 20 agents';
+        actionLbl.textContent = 'Replay';
+      }
+    }
+
+    function renderCursorsAndTrails(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width;
+      const h = canvas.height;
+
+      cursors.forEach((c, i) => {
+        c.prevX = c.x;
+        c.prevY = c.y;
+        c.angle += c.orbitSpeed;
+
+        if (t < 0.85) {
+          const r = 28 + (i % 4) * 11 + Math.sin(c.angle * 2) * 5;
+          c.tx = w / 2 + Math.cos(c.angle) * r;
+          c.ty = h / 2 + Math.sin(c.angle) * r;
+        } else if (t < TOTAL_TIMELINE_SEC) {
+          if (c.assignedAtom) {
+            const rect = c.assignedAtom.el.getBoundingClientRect();
+            const prog = Math.min(1, Math.max(0, (t - c.assignedAtom.start) / c.assignedAtom.dur));
+
+            if (prog < 0.40) {
+              const sp = prog / 0.40;
+              const easeOut = 1 - Math.pow(1 - sp, 3);
+              c.tx = rect.left + Math.max(16, rect.width * easeOut);
+              c.ty = rect.top + Math.max(14, rect.height * easeOut);
+            } else {
+              const typeProg = (prog - 0.40) / 0.60;
+              c.tx = rect.left + Math.min(rect.width - 4, rect.width * typeProg);
+              c.ty = rect.top + rect.height * 0.55;
+            }
+          } else {
+            const sectorX = ((i % 5) + 0.5) * (w / 5);
+            const sectorY = (Math.floor(i / 5) + 0.5) * (h / 4);
+            c.tx = sectorX + Math.cos(c.angle + i) * 45;
+            c.ty = sectorY + Math.sin(c.angle * 1.2 + i) * 35;
+          }
+        } else {
+          /* Right-edge spinning vortex swarm (00:52+) */
+          const vortexX = w > 768 ? w * 0.88 : w * 0.82;
+          const vortexY = h * 0.54;
+          const ringRadius = 56 + (i % 3) * 14 + Math.sin(t * 2.5 + i) * 6;
+          const ringAngle = (i / 20) * Math.PI * 2 + t * 2.2;
+          c.tx = vortexX + Math.cos(ringAngle) * ringRadius;
+          c.ty = vortexY + Math.sin(ringAngle) * ringRadius;
+        }
+
+        // Smoother, slightly slower cursor interpolation so pointers glide cleanly
+        c.x += (c.tx - c.x) * 0.14;
+        c.y += (c.ty - c.y) * 0.14;
+
+        const vx = c.x - c.prevX;
+        const vy = c.y - c.prevY;
+        const speed = Math.hypot(vx, vy);
+
+        if (speed > 2.5) {
+          ctx.save();
+          const tailX = c.x - vx * 3.1;
+          const tailY = c.y - vy * 3.1;
+          const grad = ctx.createLinearGradient(c.x, c.y, tailX, tailY);
+          grad.addColorStop(0, c.color);
+          grad.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = Math.min(3.0, 1.4 + speed * 0.04);
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(c.x, c.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        ctx.save();
+        ctx.translate(c.x, c.y);
+
+        if (c.mode === 'crosshair') {
+          ctx.strokeStyle = c.color;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(-6, 0); ctx.lineTo(6, 0);
+          ctx.moveTo(0, -6); ctx.lineTo(0, 6);
+          ctx.stroke();
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.strokeRect(-2, -2, 4, 4);
+        } else if (c.mode === 'ibeam') {
+          ctx.strokeStyle = c.color;
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          ctx.moveTo(0, -7); ctx.lineTo(0, 7);
+          ctx.moveTo(-3.5, -7); ctx.lineTo(3.5, -7);
+          ctx.moveTo(-3.5, 7); ctx.lineTo(3.5, 7);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, 14);
+          ctx.lineTo(4.2, 10.5);
+          ctx.lineTo(9.8, 12.2);
+          ctx.closePath();
+          ctx.fillStyle = c.color;
+          ctx.fill();
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      });
+    }
+
+    function masterLoop(now) {
+      if (!lastFrameTs) lastFrameTs = now;
+      const dt = Math.min(0.08, (now - lastFrameTs) / 1000);
+      lastFrameTs = now;
+
+      // Balanced baseline animation speed (0.72x at 1x setting) so wireframe dragging & typing look crisp
+      const paceFactor = buildSpeed === 1 ? 0.72 : (buildSpeed === 2 ? 1.35 : 3.0);
+      simTime += dt * paceFactor;
+
+      if (simTime > TOTAL_TIMELINE_SEC + 3.0) {
+        simTime = TOTAL_TIMELINE_SEC + 3.0;
+      }
+
+      updateSynchronizedMusic(simTime);
+      updateTimelineState(simTime);
+      renderCursorsAndTrails(simTime);
+      renderEceOscilloscope();
+      renderV2VModelCanvas();
+
+      requestAnimationFrame(masterLoop);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectStackLayer(0);
+      filterCustomerSegment('all');
+      sliceKpiDepartment('all');
+      setV2VModelDistance(34);
+      setSpeed(1);
+      initCursors();
+      registerTimelineElements();
+      replayEntireBuild();
+      requestAnimationFrame(masterLoop);
+    });
+  </script>
+</body>
+</html>
